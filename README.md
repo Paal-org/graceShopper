@@ -1,5 +1,1 @@
-# graceShopper
-# Angel Chen
-# pankti parikh
-Ashley was here!
-# Lara Pollack
+README.md for GraceShopper
