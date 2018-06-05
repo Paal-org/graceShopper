@@ -103,6 +103,65 @@ exports.default = _default;
 
 /***/ }),
 
+/***/ "./client/components/Products.js":
+/*!***************************************!*\
+  !*** ./client/components/Products.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+var _SingleProduct = _interopRequireDefault(__webpack_require__(/*! ./SingleProduct */ "./client/components/SingleProduct.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Products = function Products(props) {
+  var products = props.products;
+  return _react.default.createElement("div", null, _react.default.createElement("div", null, _react.default.createElement("h1", null, "All Products:")), _react.default.createElement("div", null, products.length ? products.map(function (product) {
+    return _react.default.createElement(_SingleProduct.default, {
+      product: product,
+      key: product.id
+    });
+  }) : 'There are no products'));
+};
+
+var mapState = function mapState(state) {
+  return {
+    products: state.products.list
+  };
+};
+
+var _default = (0, _reactRedux.connect)(mapState)(Products);
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./client/components/SingleProduct.js":
+/*!********************************************!*\
+  !*** ./client/components/SingleProduct.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/***/ }),
+
 /***/ "./client/components/auth-form.js":
 /*!****************************************!*\
   !*** ./client/components/auth-form.js ***!
@@ -490,6 +549,10 @@ var _components = __webpack_require__(/*! ./components */ "./client/components/i
 
 var _store = __webpack_require__(/*! ./store */ "./client/store/index.js");
 
+var _productReducer = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"..store/reducers/productReducer\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+var _Products = _interopRequireDefault(__webpack_require__(/*! ./components/Products */ "./client/components/Products.js"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
@@ -532,16 +595,26 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var isLoggedIn = this.props.isLoggedIn;
+      var _this$props = this.props,
+          isLoggedIn = _this$props.isLoggedIn,
+          isFetching = _this$props.isFetching;
+
+      if (!isFetching) {
+        return _react.default.createElement("div", null, "Loading...");
+      }
+
       return _react.default.createElement(_reactRouterDom.Switch, null, _react.default.createElement(_reactRouterDom.Route, {
+        exact: true,
         path: "/login",
         component: _components.Login
       }), _react.default.createElement(_reactRouterDom.Route, {
+        exact: true,
         path: "/signup",
         component: _components.Signup
       }), _react.default.createElement(_reactRouterDom.Route, {
-        path: "/home",
-        component: _components.UserHome
+        exact: true,
+        path: "/products",
+        component: _Products.default
       }), isLoggedIn && _react.default.createElement(_reactRouterDom.Switch, null, _react.default.createElement(_reactRouterDom.Route, {
         path: "/home",
         component: _components.UserHome
@@ -564,7 +637,8 @@ var mapState = function mapState(state) {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    isFetching: state.products.isFetching
   };
 };
 
@@ -572,6 +646,7 @@ var mapDispatch = function mapDispatch(dispatch) {
   return {
     loadInitialData: function loadInitialData() {
       dispatch((0, _store.me)());
+      dispatch((0, _productReducer.fetchProducts)());
     }
   };
 }; // The `withRouter` wrapper makes sure that updates are not blocked
@@ -657,10 +732,13 @@ Object.keys(_user).forEach(function (key) {
   });
 });
 
+var _productReducer = _interopRequireDefault(__webpack_require__(/*! ./reducers/productReducer */ "./client/store/reducers/productReducer.js"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var reducer = (0, _redux.combineReducers)({
-  user: _user.default
+  users: _user.default,
+  products: _productReducer.default
 });
 var middleware = (0, _reduxDevtoolsExtension.composeWithDevTools)((0, _redux.applyMiddleware)(_reduxThunk.default, (0, _reduxLogger.default)({
   collapsed: true
@@ -668,6 +746,97 @@ var middleware = (0, _reduxDevtoolsExtension.composeWithDevTools)((0, _redux.app
 var store = (0, _redux.createStore)(reducer, middleware);
 var _default = store;
 exports.default = _default;
+
+/***/ }),
+
+/***/ "./client/store/reducers/productReducer.js":
+/*!*************************************************!*\
+  !*** ./client/store/reducers/productReducer.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = productsReducer;
+exports.fetchProducts = void 0;
+
+var _axios = _interopRequireDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } } function _next(value) { step("next", value); } function _throw(err) { step("throw", err); } _next(); }); }; }
+
+var GET_PRODUCTS = 'GET_PRODUCTS';
+
+var getProducts = function getProducts(products) {
+  return {
+    type: GET_PRODUCTS,
+    products: products
+  };
+};
+
+var fetchProducts = function fetchProducts() {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee(dispatch, getState) {
+        var _ref2, data;
+
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _axios.default.get('/api/products');
+
+              case 2:
+                _ref2 = _context.sent;
+                data = _ref2.data;
+                dispatch(getProducts(data));
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      return function (_x, _x2) {
+        return _ref.apply(this, arguments);
+      };
+    }()
+  );
+};
+
+exports.fetchProducts = fetchProducts;
+var initialState = {
+  list: [],
+  isFetching: false
+};
+
+function productsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case GET_PRODUCTS:
+      return {
+        list: action.products,
+        isFetching: true
+      };
+
+    default:
+      return state;
+  }
+}
 
 /***/ }),
 
