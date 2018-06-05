@@ -4,6 +4,7 @@ import SingleProduct from './SingleProduct';
 
 const Products = props => {
   const { products } = props;
+  console.log(props)
   return (
     <div>
       <div>
@@ -20,10 +21,4 @@ const Products = props => {
   );
 };
 
-const mapState = state => {
-  return {
-    products: state.products.list,
-  };
-};
-
-export default connect(mapState)(Products);
+export default Products;
