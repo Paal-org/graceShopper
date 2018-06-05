@@ -1,7 +1,7 @@
 'use strict';
 
 const db = require('../server/db');
-const { User, Product } = require('../server/db/models');
+const { User, Product, Review } = require('../server/db/models');
 
 /**
  * Welcome to the seed file! This seed file uses a newer language feature called...
@@ -136,6 +136,27 @@ async function seed() {
         'https://i.pinimg.com/236x/8a/5d/46/8a5d46de1915470619e02c34825e4b5c--rugrats-weird.jpg',
       inventoryQuantity: 100,
       category: 'food',
+    }),
+  ]);
+
+  const review = await Promise.all([
+    Review.create({
+      rating: 3,
+      content: 'This is such an amazing product Oh My God!',
+      productId: 1,
+      userId: 1,
+    }),
+    Review.create({
+      rating: 4,
+      content: 'This is such an amazing product Oh My God!',
+      productId: 2,
+      userId: 1,
+    }),
+    Review.create({
+      rating: 5,
+      content: 'This is such an amazing product Oh My God!',
+      productId: 3,
+      userId: 1,
     }),
   ]);
   db.close();
