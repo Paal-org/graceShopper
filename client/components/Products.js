@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import SingleProduct from './SingleProduct';
 
 const Products = props => {
@@ -8,7 +7,6 @@ const Products = props => {
   return (
     <div>
       <div>
-        <h1>All Products:</h1>
         {/* need ternary or way to determine header based on route*/}
       </div>
       <div>
