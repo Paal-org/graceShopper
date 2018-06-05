@@ -1,7 +1,7 @@
 'use strict';
 
 const db = require('../server/db');
-const { User, Product } = require('../server/db/models');
+const { User, Product, Review } = require('../server/db/models');
 
 /**
  * Welcome to the seed file! This seed file uses a newer language feature called...
@@ -105,7 +105,7 @@ async function seed() {
         Scooby Snacks seem to come in many different flavours (although all boxes are identical), and in one of the later episodes, "Recipe for Disaster" (2004), Scooby and Shaggy are ecstatic when Shaggy wins a tour of the Scooby Snacks factory where they attempt to sample the batter pre-cooking before being shooed off by an irate worker who thinks they are trying to steal the recipe.`,
       price: 15.95,
       imageUrl:
-        'https://upload.wikimedia.org/wikipedia/en/thumb/d/d8/Scooby-Snacks-F.jpg',
+        'https://upload.wikimedia.org/wikipedia/en/thumb/d/d8/Scooby-Snacks-F.jpg/220px-Scooby-Snacks-F.jpg',
       inventoryQuantity: 100,
       category: 'food',
     }),
@@ -142,6 +142,12 @@ async function seed() {
   const review = await Promise.all([
     Review.create({
       rating: 3,
+      content: 'This is such an amazing product Oh My God!',
+      productId: 1,
+      userId: 1,
+    }),
+    Review.create({
+      rating: 4,
       content: 'This is such an amazing product Oh My God!',
       productId: 1,
       userId: 1,
