@@ -9,11 +9,6 @@ const Product = db.define('product', {
       notEmpty: true,
     },
   },
-  imageUrl: {
-    type: Sequelize.STRING,
-    defaultValue:
-      'https://www.cornerstone-hw.com/wp-content/uploads/2018/02/example-1prdct1.png',
-  },
   description: {
     type: Sequelize.TEXT,
     allowNull: false,
