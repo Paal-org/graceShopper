@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { withRouter, Route, Switch } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { Login, Signup, UserHome } from './components';
-import { me } from './store';
-import { fetchProducts } from '..store/reducers/productReducer';
-import Products from './components/Products';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter, Route, Switch } from "react-router-dom";
+import PropTypes from "prop-types";
+import { Login, Signup, UserHome } from "./components";
+import { me } from "./store";
+import { fetchProducts } from "./store/reducers/productReducer";
+import Products from "./components/Products";
 
 /**
  * COMPONENT
@@ -13,8 +13,8 @@ import Products from './components/Products';
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
+    console.log(this.props);
   }
-
   render() {
     const { isLoggedIn, isFetching } = this.props;
     if (!isFetching) {
@@ -47,17 +47,17 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id,
     isFetching: state.products.isFetching,
+    isLoggedIn: !!state.user.id
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    loadInitialData() {
-      dispatch(me());
+    loadInitialData:() => {
       dispatch(fetchProducts());
-    },
+      dispatch(me());
+    }
   };
 };
 
@@ -75,5 +75,5 @@ export default withRouter(
  */
 Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired
 };
