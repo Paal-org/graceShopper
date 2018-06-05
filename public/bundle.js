@@ -160,6 +160,27 @@ exports.default = _default;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SingleProduct = function SingleProduct(props) {
+  var product = props.product;
+  return _react.default.createElement("div", null, _react.default.createElement("div", null, "This is a single product"));
+};
+
+var _default = SingleProduct;
+exports.default = _default;
+
 /***/ }),
 
 /***/ "./client/components/auth-form.js":
@@ -579,6 +600,7 @@ function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.loadInitialData();
+      console.log(this.props);
     }
   }, {
     key: "render",
@@ -625,16 +647,16 @@ var mapState = function mapState(state) {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id,
-    isFetching: state.products.isFetching
+    isFetching: state.products.isFetching,
+    isLoggedIn: !!state.user.id
   };
 };
 
 var mapDispatch = function mapDispatch(dispatch) {
   return {
     loadInitialData: function loadInitialData() {
-      dispatch((0, _store.me)());
       dispatch((0, _productReducer.fetchProducts)());
+      dispatch((0, _store.me)());
     }
   };
 }; // The `withRouter` wrapper makes sure that updates are not blocked
@@ -736,7 +758,7 @@ Object.keys(_productReducer).forEach(function (key) {
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var reducer = (0, _redux.combineReducers)({
-  users: _user.default,
+  user: _user.default,
   products: _productReducer.default
 });
 var middleware = (0, _reduxDevtoolsExtension.composeWithDevTools)((0, _redux.applyMiddleware)(_reduxThunk.default, (0, _reduxLogger.default)({
