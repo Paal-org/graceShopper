@@ -21,6 +21,8 @@
   "author": "Fullstack Academy of Code",
   "license": "MIT",
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-free-brands": "^5.0.13",
     "axios": "^0.15.3",
     "body-parser": "^1.16.1",
     "compression": "^1.7.1",

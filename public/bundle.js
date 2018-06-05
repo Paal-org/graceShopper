@@ -287,16 +287,26 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Navbar = function Navbar(_ref) {
   var handleClick = _ref.handleClick,
       isLoggedIn = _ref.isLoggedIn;
-  return _react.default.createElement("div", null, _react.default.createElement("h1", null, "BOILERMAKER"), _react.default.createElement("nav", null, isLoggedIn ? _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Link, {
+  return _react.default.createElement("div", null, _react.default.createElement("div", null, _react.default.createElement("h1", null, "Pints, Ales and Lagers")), _react.default.createElement("nav", null, _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Link, {
     to: "/home"
-  }, "Home"), _react.default.createElement("a", {
+  }, "Home"), _react.default.createElement(_reactRouterDom.Link, {
+    to: "/allProducts"
+  }, "All products"), _react.default.createElement(_reactRouterDom.Link, {
+    to: "/drinks"
+  }, "Drinks"), _react.default.createElement(_reactRouterDom.Link, {
+    to: "/food"
+  }, "Food"), _react.default.createElement("i", {
+    className: "fas fa-shopping-cart:before"
+  }, _react.default.createElement(_reactRouterDom.Link, {
+    to: "/cart"
+  }, " Cart ")), isLoggedIn ? _react.default.createElement("div", null, _react.default.createElement("a", {
     href: "#",
     onClick: handleClick
   }, "Logout")) : _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Link, {
     to: "/login"
   }, "Login"), _react.default.createElement(_reactRouterDom.Link, {
     to: "/signup"
-  }, "Sign Up"))), _react.default.createElement("hr", null));
+  }, "Sign Up")))), _react.default.createElement("hr", null));
 };
 /**
  * CONTAINER
@@ -358,8 +368,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * COMPONENT
  */
 var UserHome = function UserHome(props) {
-  var email = props.email;
-  return _react.default.createElement("div", null, _react.default.createElement("h3", null, "Welcome, ", email));
+  var firstName = props.firstName;
+  var isLoggedIn = props.isLoggedIn;
+  return _react.default.createElement("div", null, _react.default.createElement("h3", null, "Welcome, ", isLoggedIn && firstName));
 };
 /**
  * CONTAINER
@@ -370,7 +381,8 @@ exports.UserHome = UserHome;
 
 var mapState = function mapState(state) {
   return {
-    email: state.user.email
+    firstName: state.user.firstName,
+    isLoggedIn: !!state.user.id
   };
 };
 
@@ -382,7 +394,7 @@ var _default = (0, _reactRedux.connect)(mapState)(UserHome);
 
 exports.default = _default;
 UserHome.propTypes = {
-  email: _propTypes.default.string
+  firstName: _propTypes.default.string
 };
 
 /***/ }),
@@ -527,6 +539,9 @@ function (_Component) {
       }), _react.default.createElement(_reactRouterDom.Route, {
         path: "/signup",
         component: _components.Signup
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        path: "/home",
+        component: _components.UserHome
       }), isLoggedIn && _react.default.createElement(_reactRouterDom.Switch, null, _react.default.createElement(_reactRouterDom.Route, {
         path: "/home",
         component: _components.UserHome
