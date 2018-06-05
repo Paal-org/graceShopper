@@ -1,7 +1,7 @@
 'use strict';
 
 const db = require('../server/db');
-const { User, Product, Review } = require('../server/db/models');
+const { User, Product } = require('../server/db/models');
 
 /**
  * Welcome to the seed file! This seed file uses a newer language feature called...
