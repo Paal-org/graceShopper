@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter, Route, Switch } from "react-router-dom";
-import PropTypes from "prop-types";
-import { Login, Signup, UserHome } from "./components";
-import { me } from "./store";
-import { fetchProducts } from "./store/reducers/productReducer";
-import Products from "./components/Products";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Login, Signup, UserHome } from './components';
+import { me } from './store';
+import { fetchProducts } from './store/reducers/productReducer';
+import Products from './components/Products';
 
 /**
  * COMPONENT
@@ -24,6 +24,8 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Redirect exact path="/" to="/home" />
+        <Route exact path="/home" component={UserHome} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/products" component={Products} />
@@ -34,7 +36,7 @@ class Routes extends Component {
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route component={UserHome} />
       </Switch>
     );
   }
@@ -48,16 +50,16 @@ const mapState = state => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isFetching: state.products.isFetching,
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    loadInitialData:() => {
+    loadInitialData: () => {
       dispatch(fetchProducts());
       dispatch(me());
-    }
+    },
   };
 };
 
@@ -75,5 +77,5 @@ export default withRouter(
  */
 Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
 };
