@@ -1,14 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import SingleProduct from './SingleProduct';
 
 const Products = props => {
   const { products } = props;
+  console.log(props)
   return (
     <div>
       <div>
-        <h1>All Products:</h1>
         {/* need ternary or way to determine header based on route*/}
       </div>
       <div>
@@ -22,10 +21,4 @@ const Products = props => {
   );
 };
 
-const mapState = state => {
-  return {
-    products: state.products.list,
-  };
-};
-
-export default connect(mapState)(Products);
+export default Products;
