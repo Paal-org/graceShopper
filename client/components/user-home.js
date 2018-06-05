@@ -7,11 +7,11 @@ import { connect } from 'react-redux';
  */
 export const UserHome = props => {
   const { firstName } = props;
-  const {isLoggedIn} = props
+  const { isLoggedIn } = props;
 
   return (
     <div>
-      <h3>Welcome, {isLoggedIn && firstName}</h3>
+      <h3>Welcome{isLoggedIn && `, ${firstName}`}</h3>
     </div>
   );
 };
@@ -22,7 +22,7 @@ export const UserHome = props => {
 const mapState = state => {
   return {
     firstName: state.user.firstName,
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
   };
 };
 

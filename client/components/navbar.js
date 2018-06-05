@@ -12,9 +12,9 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
     <nav>
       <div>
         <Link to="/home">Home</Link>
-        <Link to="/allProducts">All products</Link>
-        <Link to="/drinks">Drinks</Link>
-        <Link to="/food">Food</Link>
+        <Link to="/products">All products</Link>
+        <Link to="/products/drinks">Drinks</Link>
+        <Link to="/products/food">Food</Link>
         <i className="fas fa-shopping-cart:before">
           <Link to="/cart"> Cart </Link>
         </i>
