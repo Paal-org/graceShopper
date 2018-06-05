@@ -21,7 +21,8 @@ const Review = require('./review');
 User.belongsToMany(Product, { through: 'order' });
 Product.belongsToMany(User, { through: 'order' });
 
-Review.belongsTo(Product), Review.belongsTo(User);
+Review.belongsTo(Product);
+Review.belongsTo(User);
 
 module.exports = {
   User,
