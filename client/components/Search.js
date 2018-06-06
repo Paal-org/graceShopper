@@ -21,7 +21,9 @@ class Search extends Component {
     this.setState({
       inputValue: evt.target.value,
       products: this.props.productList.filter(product => {
-        return product.name.includes(this.state.inputValue);
+        return product.name
+          .toLowerCase()
+          .includes(this.state.inputValue.toLowerCase());
       }),
     });
   }

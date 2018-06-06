@@ -1,7 +1,7 @@
 'use strict';
 
 const db = require('../server/db');
-const { User, Product, Review } = require('../server/db/models');
+const { User, Product, Review, Category } = require('../server/db/models');
 
 /**
  * Welcome to the seed file! This seed file uses a newer language feature called...
@@ -35,6 +35,18 @@ async function seed() {
     }),
   ]);
 
+  //************* CATEGORY *******************/
+  const category = await Promise.all([
+    Category.create({
+      name: 'drinks',
+      imageUrl: '/img/pint.png',
+    }),
+    Category.create({
+      name: 'food',
+      imageUrl: '/img/hamburger.png',
+    }),
+  ]);
+
   //************* DRINKS *******************/
   const drinks = await Promise.all([
     Product.create({
@@ -45,7 +57,7 @@ async function seed() {
       imageUrl:
         'https://cartoon-battle.narzekasz.pl/deck/cards/KH_AlamoBeer.png',
       inventoryQuantity: 100,
-      category: 'drinks',
+      categoryId: 1,
     }),
     Product.create({
       name: 'Duff Beer',
@@ -55,7 +67,7 @@ async function seed() {
       imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/AKE_Duff_Beer_IMG_5244_edit.jpg/170px-AKE_Duff_Beer_IMG_5244_edit.jpg',
       inventoryQuantity: 100,
-      category: 'drinks',
+      categoryId: 1,
     }),
     Product.create({
       name: 'Buzz Beer',
@@ -64,7 +76,7 @@ async function seed() {
       imageUrl:
         'http://www.lcbo.com/content/dam/lcbo/products/330969.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg',
       inventoryQuantity: 100,
-      category: 'drinks',
+      categoryId: 1,
     }),
     Product.create({
       name: 'Blue Milk',
@@ -72,7 +84,7 @@ async function seed() {
       price: 7.95,
       imageUrl: 'https://cdn8.bbend.net/images/news/2018/01/protaprilia_1.jpg',
       inventoryQuantity: 70,
-      category: 'drinks',
+      categoryId: 1,
     }),
     Product.create({
       name: 'Fizzy Bubblech',
@@ -81,7 +93,7 @@ async function seed() {
       imageUrl:
         'https://www.spreadshirt.com/image-server/v1/mp/designs/1009298187,width=178,height=178/zohan-fizzy-bubblech.png',
       inventoryQuantity: 100,
-      category: 'drinks',
+      categoryId: 1,
     }),
   ]);
   //************* FOOD *******************/
@@ -96,7 +108,7 @@ async function seed() {
       price: 8.95,
       imageUrl: 'https://i.ytimg.com/vi/k5e1HPeusiA/hqdefault.jpg',
       inventoryQuantity: 100,
-      category: 'food',
+      categoryId: 2,
     }),
     Product.create({
       name: 'Scooby Snacks',
@@ -107,7 +119,7 @@ async function seed() {
       imageUrl:
         'https://upload.wikimedia.org/wikipedia/en/thumb/d/d8/Scooby-Snacks-F.jpg/220px-Scooby-Snacks-F.jpg',
       inventoryQuantity: 100,
-      category: 'food',
+      categoryId: 2,
     }),
     Product.create({
       name: 'Everlasting Gobstopper',
@@ -116,7 +128,7 @@ async function seed() {
       imageUrl:
         'https://i.pinimg.com/originals/30/b9/97/30b99730524f7058ec8aca935443dc71.jpg',
       inventoryQuantity: 100,
-      category: 'food',
+      categoryId: 2,
     }),
     Product.create({
       name: `Panucci's Pizza`,
@@ -125,7 +137,7 @@ async function seed() {
       imageUrl:
         'https://i.pinimg.com/736x/e4/e8/00/e4e800cca234992835db9bab595fc501--futurama-pizza.jpg',
       inventoryQuantity: 100,
-      category: 'food',
+      categoryId: 2,
     }),
     Product.create({
       name: `Reptar Cereal`,
@@ -135,7 +147,7 @@ async function seed() {
       imageUrl:
         'https://i.pinimg.com/236x/8a/5d/46/8a5d46de1915470619e02c34825e4b5c--rugrats-weird.jpg',
       inventoryQuantity: 100,
-      category: 'food',
+      categoryId: 2,
     }),
   ]);
 
