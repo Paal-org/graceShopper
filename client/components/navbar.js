@@ -18,6 +18,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
         <i className="fas fa-shopping-cart:before">
           <Link to="/cart"> Cart </Link>
         </i>
+        <Link to="/products/search">Search</Link>
         {isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}
