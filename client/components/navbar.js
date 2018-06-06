@@ -32,7 +32,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             Cart
           </Link>
           <Link to="/products/search">
-            <i className="fas fa-search fa-2x" />Search
+            <img className="nav-icon" src="/img/search.png" />Search
           </Link>
           {isLoggedIn ? (
             <div>
@@ -48,7 +48,9 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
               <Link to="/login">
                 <img className="nav-icon" src="/img/enter.png" />Login
               </Link>
-              <Link to="/signup">Sign Up</Link>
+              <Link to="/signup">
+                <img className="nav-icon" src="/img/edit.png" />Sign Up
+              </Link>
             </div>
           )}
         </div>
