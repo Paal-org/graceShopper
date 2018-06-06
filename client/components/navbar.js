@@ -13,32 +13,32 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       <nav>
         <div>
           <Link to="/home">
-            <i className="fas fa-home fa-2x" /> Home
+            <img className="nav-icon" src="/img/house.png" /> Home
           </Link>
           <Link to="/products">
-            <i className="fas fa-list-alt fa-2x" />
+            <img className="nav-icon" src="/img/list.png" />
             Products
           </Link>
           <Link to="/products/drinks">
-            <i className="fas fa-beer fa-2x" />
+            <img className="nav-icon" src="/img/pint.png" />
             Drinks
           </Link>
           <Link to="/products/food">
-            <i className="fas fa-utensils  fa-2x" />
+            <img className="nav-icon" src="/img/hamburger.png" />
             Food
           </Link>
           <Link to="/cart">
-            <i className="fas fa-shopping-cart fa-2x" />
+            <img className="nav-icon" src="/img/shopping-basket.png" />
             Cart
           </Link>
           <Link to="/products/search">
-            <i className="fas fa-search fa-2x" />Search
+            <img className="nav-icon" src="/img/search.png" />Search
           </Link>
           {isLoggedIn ? (
             <div>
               {/* The navbar will show these links after you log in */}
               <a href="#" onClick={handleClick}>
-                <i className="fas fa-sign-out-alt fa-2x" />
+                <img className="nav-icon" src="/img/exit.png" />
                 Logout
               </a>
             </div>
@@ -46,9 +46,11 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             <div>
               {/* The navbar will show these links before you log in */}
               <Link to="/login">
-                <i className="fas fa-sign-in-alt fa-2x" />Login
+                <img className="nav-icon" src="/img/enter.png" />Login
               </Link>
-              <Link to="/signup">Sign Up</Link>
+              <Link to="/signup">
+                <img className="nav-icon" src="/img/edit.png" />Sign Up
+              </Link>
             </div>
           )}
         </div>
