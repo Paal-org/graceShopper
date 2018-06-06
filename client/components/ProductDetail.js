@@ -17,7 +17,6 @@ const ProductDetail = props => {
       <div id="main-prod-description">
         <div>
           <h2>{selectedProduct.name}</h2>
-          {/* need ternary or way to determine header based on route*/}
         </div>
         <br />
         <div>Review: {reviews.length ? avg : 'Be the first to leave one'}</div>

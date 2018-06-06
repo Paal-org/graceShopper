@@ -7,35 +7,52 @@ import { logout } from '../store';
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
     <div>
-      <h1>Pints, Ales and Lagers</h1>
-    </div>
-    <nav>
       <div>
-        <Link to="/home">Home</Link>
-        <Link to="/products">All products</Link>
-        <Link to="/products/drinks">Drinks</Link>
-        <Link to="/products/food">Food</Link>
-        <i className="fas fa-shopping-cart:before">
-          <Link to="/cart"> Cart </Link>
-        </i>
-        <Link to="/products/search">Search</Link>
-        {isLoggedIn ? (
-          <div>
-            {/* The navbar will show these links after you log in */}
-            <a href="#" onClick={handleClick}>
-              Logout
-            </a>
-          </div>
-        ) : (
-          <div>
-            {/* The navbar will show these links before you log in */}
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
-          </div>
-        )}
+        <h1>Provisions, Alcohol and Libations</h1>
       </div>
-    </nav>
-    <hr />
+      <nav>
+        <div>
+          <Link to="/home">
+            <i className="fas fa-home fa-2x" /> Home
+          </Link>
+          <Link to="/products">
+            <i className="fas fa-list-alt fa-2x" />
+            Products
+          </Link>
+          <Link to="/products/drinks">
+            <i className="fas fa-beer fa-2x" />
+            Drinks
+          </Link>
+          <Link to="/products/food">
+            <i className="fas fa-utensils  fa-2x" />
+            Food
+          </Link>
+          <Link to="/cart">
+            <i className="fas fa-shopping-cart fa-2x" />
+            Cart
+          </Link>
+          <Link to="/products/search">Search</Link>
+          {isLoggedIn ? (
+            <div>
+              {/* The navbar will show these links after you log in */}
+              <a href="#" onClick={handleClick}>
+                <i className="fas fa-sign-out-alt fa-2x" />
+                Logout
+              </a>
+            </div>
+          ) : (
+            <div>
+              {/* The navbar will show these links before you log in */}
+              <Link to="/login">
+                <i className="fas fa-sign-in-alt fa-2x" />Login
+              </Link>
+              <Link to="/signup">Sign Up</Link>
+            </div>
+          )}
+        </div>
+      </nav>
+      <hr />
+    </div>
   </div>
 );
 

@@ -19,10 +19,8 @@ const mapState = (state, ownProps) => {
   const urlPath = ownProps.location.pathname;
   const header = urlPath.slice(10)
   let productList = []
-  console.log('this is the state', state)
   if (header) {
     productList = state.products.list.filter(product => product.category === header)
-    console.log('this is the filtered', productList)
   } else {
     productList = state.products.list
   }
