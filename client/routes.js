@@ -7,6 +7,7 @@ import { me } from './store';
 import { fetchProducts } from './store/reducers/productReducer';
 import ProductsList from './components/ProductsList';
 import ProductDetail from './components/ProductDetail';
+import Search from './components/Search';
 
 /**
  * COMPONENT
@@ -31,6 +32,7 @@ class Routes extends Component {
         <Route exact path="/products" component={ProductsList} />
         <Route exact path="/products/food" component={ProductsList} />
         <Route exact path="/products/drinks" component={ProductsList} />
+        <Route exact path="/products/search" component={Search} />
         <Route exact path="/products/drinks/:id" component={ProductDetail} />
         <Route exact path="/products/food/:id" component={ProductDetail} />
         {isLoggedIn && (

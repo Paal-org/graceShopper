@@ -31,6 +31,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             <i className="fas fa-shopping-cart fa-2x" />
             Cart
           </Link>
+          <Link to="/products/search">Search</Link>
           {isLoggedIn ? (
             <div>
               {/* The navbar will show these links after you log in */}
