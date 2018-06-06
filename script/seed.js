@@ -1,7 +1,7 @@
 'use strict';
 
 const db = require('../server/db');
-const { User, Product } = require('../server/db/models');
+const { User, Product, Review } = require('../server/db/models');
 
 /**
  * Welcome to the seed file! This seed file uses a newer language feature called...
@@ -105,7 +105,7 @@ async function seed() {
         Scooby Snacks seem to come in many different flavours (although all boxes are identical), and in one of the later episodes, "Recipe for Disaster" (2004), Scooby and Shaggy are ecstatic when Shaggy wins a tour of the Scooby Snacks factory where they attempt to sample the batter pre-cooking before being shooed off by an irate worker who thinks they are trying to steal the recipe.`,
       price: 15.95,
       imageUrl:
-        'https://upload.wikimedia.org/wikipedia/en/thumb/d/d8/Scooby-Snacks-F.jpg',
+        'https://upload.wikimedia.org/wikipedia/en/thumb/d/d8/Scooby-Snacks-F.jpg/220px-Scooby-Snacks-F.jpg',
       inventoryQuantity: 100,
       category: 'food',
     }),
@@ -138,6 +138,33 @@ async function seed() {
       category: 'food',
     }),
   ]);
+
+  const review = await Promise.all([
+    Review.create({
+      rating: 3,
+      content: 'This is such an amazing product Oh My God!',
+      productId: 1,
+      userId: 1,
+    }),
+    Review.create({
+      rating: 4,
+      content: 'This is such an amazing product Oh My God!',
+      productId: 1,
+      userId: 1,
+    }),
+    Review.create({
+      rating: 4,
+      content: 'This is such an amazing product Oh My God!',
+      productId: 2,
+      userId: 1,
+    }),
+    Review.create({
+      rating: 5,
+      content: 'This is such an amazing product Oh My God!',
+      productId: 3,
+      userId: 1,
+    }),
+  ]);
   db.close();
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
@@ -151,17 +178,6 @@ async function seed() {
 // `Async` functions always return a promise, so we can use `catch` to handle
 // any errors that might occur inside of `seed`.
 if (module === require.main) {
-<<<<<<< HEAD
-  seed().catch(err => {
-    console.error(err);
-    process.exitCode = 1;
-  }).finally(() => {
-    // `finally` is like then + catch. It runs no matter what.
-    console.log('closing db connection');
-    db.close();
-    console.log('db connection closed');
-  });
-=======
   seed()
     .catch(err => {
       console.error(err);
@@ -173,7 +189,6 @@ if (module === require.main) {
       db.close();
       console.log('db connection closed');
     });
->>>>>>> master
   /*
    * note: everything outside of the async function is totally synchronous
    * The console.log below will occur before any of the logs that occur inside

@@ -22,7 +22,10 @@ User.belongsToMany(Product, { through: 'order' });
 Product.belongsToMany(User, { through: 'order' });
 
 Review.belongsTo(Product);
+Product.hasMany(Review);
+
 Review.belongsTo(User);
+User.hasMany(Review);
 
 module.exports = {
   User,

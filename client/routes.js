@@ -6,6 +6,7 @@ import { Login, Signup, UserHome } from './components';
 import { me } from './store';
 import { fetchProducts } from './store/reducers/productReducer';
 import ProductsList from './components/ProductsList';
+import ProductDetail from './components/ProductDetail';
 
 /**
  * COMPONENT
@@ -13,7 +14,6 @@ import ProductsList from './components/ProductsList';
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
-
   }
   render() {
     const { isLoggedIn, isFetching } = this.props;
@@ -21,7 +21,8 @@ class Routes extends Component {
       return <div>Loading...</div>;
     }
 
-    return <Switch>
+    return (
+      <Switch>
         {/* Routes placed here are available to all visitors */}
         <Redirect exact path="/" to="/home" />
         <Route exact path="/home" component={UserHome} />
@@ -30,13 +31,18 @@ class Routes extends Component {
         <Route exact path="/products" component={ProductsList} />
         <Route exact path="/products/food" component={ProductsList} />
         <Route exact path="/products/drinks" component={ProductsList} />
-        {isLoggedIn && <Switch>
+        <Route exact path="/products/drinks/:id" component={ProductDetail} />
+        <Route exact path="/products/food/:id" component={ProductDetail} />
+        {isLoggedIn && (
+          <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
-          </Switch>}
+          </Switch>
+        )}
         {/* Displays our Login component as a fallback */}
         <Route component={UserHome} />
-      </Switch>;
+      </Switch>
+    );
   }
 }
 
