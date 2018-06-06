@@ -31,7 +31,9 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             <img className="nav-icon" src="/img/shopping-basket.png" />
             Cart
           </Link>
-          <Link to="/products/search">Search</Link>
+          <Link to="/products/search">
+            <i className="fas fa-search fa-2x" />Search
+          </Link>
           {isLoggedIn ? (
             <div>
               {/* The navbar will show these links after you log in */}
