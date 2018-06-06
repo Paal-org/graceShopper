@@ -159,9 +159,33 @@ async function seed() {
       userId: 1,
     }),
     Review.create({
-      rating: 5,
+      rating: 3,
       content: 'This is such an amazing product Oh My God!',
       productId: 3,
+      userId: 2,
+    }),
+    Review.create({
+      rating: 5,
+      content: 'This is such an amazing product Oh My God!',
+      productId: 4,
+      userId: 1,
+    }),
+    Review.create({
+      rating: 5,
+      content: 'This is such an amazing product Oh My God!',
+      productId: 8,
+      userId: 2,
+    }),
+    Review.create({
+      rating: 2,
+      content: 'This is such an amazing product Oh My God!',
+      productId: 10,
+      userId: 2,
+    }),
+    Review.create({
+      rating: 4,
+      content: 'This is such an amazing product Oh My God!',
+      productId: 6,
       userId: 1,
     }),
   ]);
