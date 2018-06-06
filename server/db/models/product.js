@@ -32,13 +32,6 @@ const Product = db.define('product', {
     type: Sequelize.INTEGER,
     defaultValue: 0,
   },
-  category: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
-  },
 });
 
 module.exports = Product;
