@@ -13,8 +13,8 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-router.get('/:id', (req, res, next) => {
-  User.findById(req.params.id, {
+router.get('/account', (req, res, next) => {
+  User.findById(req.user.id, {
     include: [{ all: true }, { model: Order, include: [{ all: true }] }],
   })
     .then(eachUser => {

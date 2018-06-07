@@ -18,9 +18,9 @@ export default function accountReducer(state = initialState, action) {
   }
 }
 
-export const fetchAccount = id => {
+export const fetchAccount = () => {
   return async dispatch => {
-    const { data } = await axios.get(`/api/users/${id}`);
+    const { data } = await axios.get('/api/users/account');
     dispatch(getAccount(data));
   };
 };

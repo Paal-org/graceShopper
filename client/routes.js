@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Login, Signup, UserHome } from './components';
-import { me } from './store';
+import { me, fetchAccount } from './store';
 import { fetchProducts } from './store/reducers/productReducer';
 import ProductsList from './components/ProductsList';
 import ProductDetail from './components/ProductDetail';
 import Search from './components/Search';
+import AccountDetails from './components/AccountDetails';
 
 /**
  * COMPONENT
@@ -39,6 +40,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/account" component={AccountDetails}/>
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
@@ -65,6 +67,7 @@ const mapDispatch = dispatch => {
     loadInitialData: () => {
       dispatch(fetchProducts());
       dispatch(me());
+      dispatch(fetchAccount())
     },
   };
 };
