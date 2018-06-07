@@ -3,13 +3,16 @@ import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Login, Signup, UserHome } from './components';
-import { me } from './store';
+import { me, fetchAccount } from './store';
 import { fetchProducts } from './store/reducers/productReducer';
 import { fetchCart } from './store/reducers/cartReducer';
 import ProductsList from './components/ProductsList';
 import ProductDetail from './components/ProductDetail';
 import Search from './components/Search';
+
 import Cart from './components/Cart';
+
+import AccountDetails from './components/AccountDetails';
 
 /**
  * COMPONENT
@@ -42,6 +45,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/account" component={AccountDetails} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
@@ -69,6 +73,7 @@ const mapDispatch = dispatch => {
       dispatch(fetchProducts());
       dispatch(me());
       dispatch(fetchCart());
+      dispatch(fetchAccount());
     },
   };
 };
