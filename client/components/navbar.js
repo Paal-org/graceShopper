@@ -1,13 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { logout } from "../store";
-import { fetchCategories } from "../store/reducers/categoryReducer";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logout } from '../store';
+import { fetchCategories } from '../store/reducers/categoryReducer';
 
 const Navbar = props => {
-  const { handleClick, isLoggedIn, categories } = props
-  console.log('these are the props', props)
+  const { handleClick, isLoggedIn, categories } = props;
+  console.log('these are the props', props);
   return (
     <div>
       <div>
@@ -31,7 +31,7 @@ const Navbar = props => {
               <img className="nav-icon" src="/img/hamburger.png" />
               Food
             </Link>
-            <Link to="/cart">
+            <Link to="/account/cart">
               <img className="nav-icon" src="/img/shopping-basket.png" />
               Cart
             </Link>
@@ -71,7 +71,7 @@ const Navbar = props => {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    categories: state.categories
+    categories: state.categories,
   };
 };
 
@@ -82,7 +82,7 @@ const mapDispatch = dispatch => {
     },
     categories: () => {
       dispatch(fetchCategories());
-    }
+    },
   };
 };
 
@@ -96,5 +96,5 @@ export default connect(
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
 };

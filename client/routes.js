@@ -5,9 +5,11 @@ import PropTypes from 'prop-types';
 import { Login, Signup, UserHome } from './components';
 import { me } from './store';
 import { fetchProducts } from './store/reducers/productReducer';
+import { fetchCart } from './store/reducers/cartReducer';
 import ProductsList from './components/ProductsList';
 import ProductDetail from './components/ProductDetail';
 import Search from './components/Search';
+import Cart from './components/Cart';
 
 /**
  * COMPONENT
@@ -35,6 +37,7 @@ class Routes extends Component {
         <Route exact path="/products/search" component={Search} />
         <Route exact path="/products/drinks/:id" component={ProductDetail} />
         <Route exact path="/products/food/:id" component={ProductDetail} />
+        <Route exact path="/account/cart" component={Cart} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -65,6 +68,7 @@ const mapDispatch = dispatch => {
     loadInitialData: () => {
       dispatch(fetchProducts());
       dispatch(me());
+      dispatch(fetchCart());
     },
   };
 };

@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const { Order } = require('../db/models');
 
-router.get('/:userId', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
+  console.log(req.user);
   try {
     const userOrders = await Order.findAll({
-      where: { userId: req.params.userId },
+      where: { userId: req.user.id, status: 'cart' },
       include: [{ all: true }],
     });
     if (userOrders) {
