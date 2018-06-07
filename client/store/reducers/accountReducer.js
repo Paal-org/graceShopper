@@ -17,3 +17,10 @@ export default function accountReducer(state = initialState, action) {
       return state;
   }
 }
+
+export const fetchAccount = id => {
+  return async dispatch => {
+    const { data } = await axios.get(`/api/users/${id}`);
+    dispatch(getAccount(data));
+  };
+};
