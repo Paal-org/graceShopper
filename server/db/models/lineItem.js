@@ -11,6 +11,10 @@ const LineItem = db.define('lineItem', {
     type: Sequelize.INTEGER,
     defaultValue: null,
   },
+  purchaseQuantity: {
+    type: Sequelize.INTEGER,
+    defaultValue: 1,
+  },
 });
 
 module.exports = LineItem;

@@ -1,9 +1,9 @@
-const passport = require('passport')
-const router = require('express').Router()
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
-const {User} = require('../db/models')
-const { clientId, clientSecret, clientCallback } = require('../../secrets')
-module.exports = router
+const passport = require('passport');
+const router = require('express').Router();
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const { User } = require('../db/models');
+const { clientId, clientSecret, clientCallback } = require('../../secrets');
+module.exports = router;
 
 /**
  * For OAuth keys and other secrets, your Node process will search
@@ -20,40 +20,45 @@ module.exports = router
  */
 
 if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
-
-  console.log('Google client ID / secret not found. Skipping Google OAuth.')
-
+  console.log('Google client ID / secret not found. Skipping Google OAuth.');
 } else {
-
   const googleConfig = {
     clientID: clientId,
     clientSecret: clientSecret,
-    callbackURL: clientCallback
-  }
+    callbackURL: clientCallback,
+  };
 
-  const strategy = new GoogleStrategy(googleConfig, (token, refreshToken, profile, done) => {
-    console.log("PROFILE", profile)
-    const googleId = profile.id
-    const email = profile.emails[0].value
-    const firstName = profile.name.givenName
-    const lastName = profile.name.familyName
+  const strategy = new GoogleStrategy(
+    googleConfig,
+    (token, refreshToken, profile, done) => {
+      // console.log("PROFILE", profile)
+      const googleId = profile.id;
+      const email = profile.emails[0].value;
+      const firstName = profile.name.givenName;
+      const lastName = profile.name.familyName;
 
-    User.find({where: {googleId}})
-      .then(foundUser => (foundUser
-        ? done(null, foundUser)
-        : User.create({firstName, lastName, email, googleId})
-          .then(createdUser => done(null, createdUser))
-      ))
-      .catch(done)
-  })
+      User.find({ where: { googleId } })
+        .then(
+          foundUser =>
+            foundUser
+              ? done(null, foundUser)
+              : User.create({ firstName, lastName, email, googleId }).then(
+                  createdUser => done(null, createdUser)
+                )
+        )
+        .catch(done);
+    }
+  );
 
-  passport.use(strategy)
+  passport.use(strategy);
 
-  router.get('/', passport.authenticate('google', {scope: 'email'}))
+  router.get('/', passport.authenticate('google', { scope: 'email' }));
 
-  router.get('/callback', passport.authenticate('google', {
-    successRedirect: '/home',
-    failureRedirect: '/login'
-  }))
-
+  router.get(
+    '/callback',
+    passport.authenticate('google', {
+      successRedirect: '/home',
+      failureRedirect: '/login',
+    })
+  );
 }
