@@ -1,18 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import AddToCartButton from './AddToCartButton';
+import AverateRating from './AverateRating';
+import ProductReview from './ProductReview';
 
 const ProductDetail = props => {
   const { selectedProduct } = props;
   const reviews = selectedProduct.reviews;
-  let sum = 0;
-  reviews.length
-    ? reviews.map(review => {
-        sum += review.rating;
-        return review;
-      })
-    : (sum = 0);
-  const avg = sum / reviews.length || 1;
+
   return (
     <div>
       <div id="main-prod-description">
@@ -20,14 +15,16 @@ const ProductDetail = props => {
           <h2>{selectedProduct.name}</h2>
         </div>
         <br />
-        <div>Review: {reviews.length ? avg : 'Be the first to leave one'}</div>
+        <div>
+          <AverateRating product={selectedProduct} />
+        </div>
         <br />
         <div>
           <img src={selectedProduct.imageUrl} />
         </div>
         <br />
         <div>
-          About this Product:
+          <h3>About this Product:</h3>
           <br />
           {selectedProduct.description}
         </div>
@@ -36,7 +33,7 @@ const ProductDetail = props => {
         <div>Price: {selectedProduct.price}</div>
         <br />
         <div>
-          In stock:{' '}
+          <h3>In stock: </h3>
           {selectedProduct.inventoryQuantity
             ? 'Yes get some before they are gone'
             : 'Sorry! we are out of stock'}
@@ -47,17 +44,10 @@ const ProductDetail = props => {
         <br />
       </div>
       <div>
-        Customer Reviews:
-        {reviews.map(review => {
-          return (
-            <div key={review.id}>
-              <div>Rating: {review.rating}</div>
-              <div>{review.content}</div>
-              <br />
-              <br />
-            </div>
-          );
-        })}
+        <h3>Customer Reviews:</h3>
+        {reviews.map(review => (
+          <ProductReview key={review.id} review={review} />
+        ))}
       </div>
     </div>
   );

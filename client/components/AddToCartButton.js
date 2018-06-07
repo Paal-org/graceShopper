@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { postToCart } from '../store/reducers/cartReducer';
 
@@ -25,10 +24,12 @@ class AddToCartButton extends Component {
   }
 
   render() {
+    const { product } = this.props;
     return (
       <div>
         <button
           className="addToCartButton"
+          disabled={!product.inventoryQuantity}
           type="button"
           onClick={this.addToCart}
         >

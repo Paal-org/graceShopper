@@ -6,7 +6,7 @@ import { logout } from '../store';
 import { fetchCategories } from '../store/reducers/categoryReducer';
 
 const Navbar = props => {
-  const { handleClick, isLoggedIn, categories } = props;
+  const { handleClick, isLoggedIn, categories, firstName } = props;
   return (
     <div>
       <div>
@@ -44,6 +44,10 @@ const Navbar = props => {
                   <img className="nav-icon" src="/img/exit.png" />
                   Logout
                 </a>
+                <Link to="/account">
+                  <img className="nav-icon" src="/img/godzilla.png" />Welcome{' '}
+                  {firstName}
+                </Link>
               </div>
             ) : (
               <div>
@@ -53,6 +57,10 @@ const Navbar = props => {
                 </Link>
                 <Link to="/signup">
                   <img className="nav-icon" src="/img/edit.png" />Sign Up
+                </Link>
+                <Link to="/account">
+                  <img className="nav-icon" src="/img/godzilla.png" />Welcome
+                  Guest
                 </Link>
               </div>
             )}
@@ -71,6 +79,7 @@ const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
     categories: state.categories,
+    firstName: state.user.firstName,
   };
 };
 
