@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User } = require("../db/models");
+const { User, Order, LineItem } = require("../db/models");
 module.exports = router;
 
 router.get("/", (req, res, next) => {
@@ -14,7 +14,10 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/:id", (req, res, next) => {
-  User.findById(req.params.id)
+  User.findById(req.params.id, {
+    include: [{ all: true }],
+    model: [Order, { include: [{ all: true }] }]
+  })
     .then(eachUser => {
       res.json(eachUser);
     })
