@@ -4,7 +4,6 @@ import SingleProduct from './SingleProduct';
 
 const Products = props => {
   const { products } = props;
-  console.log(props)
   return (
     <div>
       <div>
