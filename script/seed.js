@@ -1,7 +1,14 @@
 'use strict';
 
 const db = require('../server/db');
-const { User, Product, Review, Category } = require('../server/db/models');
+const {
+  User,
+  Product,
+  Review,
+  Category,
+  Order,
+  LineItem,
+} = require('../server/db/models');
 
 /**
  * Welcome to the seed file! This seed file uses a newer language feature called...
@@ -199,6 +206,64 @@ async function seed() {
       content: 'This is such an amazing product Oh My God!',
       productId: 6,
       userId: 1,
+    }),
+  ]);
+  const orders = await Promise.all([
+    Order.create({
+      status: 'cart',
+      userId: '1',
+    }),
+    Order.create({
+      status: 'complete',
+      userId: '1',
+    }),
+    Order.create({
+      status: 'complete',
+      userId: '1',
+    }),
+    Order.create({
+      status: 'cart',
+      userId: '2',
+    }),
+    Order.create({
+      status: 'complete',
+      userId: '2',
+    }),
+  ]);
+
+  const lineItems = await Promise.all([
+    LineItem.create({
+      orderId: orders[0].id,
+      productId: 3,
+      purchaseQuantity: 3,
+    }),
+    LineItem.create({
+      orderId: orders[0].id,
+      productId: 1,
+    }),
+    LineItem.create({
+      orderId: orders[0].id,
+      productId: 2,
+    }),
+    LineItem.create({
+      orderId: orders[1].id,
+      productId: 3,
+    }),
+    LineItem.create({
+      orderId: orders[1].id,
+      productId: 2,
+    }),
+    LineItem.create({
+      orderId: orders[3].id,
+      productId: 7,
+    }),
+    LineItem.create({
+      orderId: orders[4].id,
+      productId: 6,
+    }),
+    LineItem.create({
+      orderId: orders[2].id,
+      productId: 6,
     }),
   ]);
   db.close();
