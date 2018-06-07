@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import AddToCartButton from './AddToCartButton';
 
 const SingleProduct = props => {
   const { product } = props;
@@ -14,6 +15,9 @@ const SingleProduct = props => {
           <div>${product.price}</div>
         </div>
       </Link>
+      <div>
+        <AddToCartButton product={product} />
+      </div>
     </div>
   );
 };

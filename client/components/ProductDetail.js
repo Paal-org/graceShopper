@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import AddToCartButton from './AddToCartButton';
 
 const ProductDetail = props => {
   const { selectedProduct } = props;
@@ -39,6 +40,9 @@ const ProductDetail = props => {
           {selectedProduct.inventoryQuantity
             ? 'Yes get some before they are gone'
             : 'Sorry! we are out of stock'}
+        </div>
+        <div>
+          <AddToCartButton product={selectedProduct} />
         </div>
         <br />
       </div>

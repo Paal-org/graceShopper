@@ -7,7 +7,6 @@ import { fetchCategories } from '../store/reducers/categoryReducer';
 
 const Navbar = props => {
   const { handleClick, isLoggedIn, categories } = props;
-  console.log('these are the props', props);
   return (
     <div>
       <div>

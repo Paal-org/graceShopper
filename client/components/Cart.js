@@ -1,24 +1,21 @@
 import React from 'react';
 // import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import SingleProduct from './SingleProduct';
+import CartItem from './CartItem';
 
 const Cart = props => {
   const products = props.cart.cart.products;
-  console.log(products);
   return (
     <div>
       {props.cart.isFetching &&
         products.map(product => {
-          console.log(product);
-          return <SingleProduct product={product} key={product.id} />;
+          return <CartItem key={product.id} product={product} />;
         })}
     </div>
   );
 };
 
 const mapState = state => {
-  console.log(state);
   return {
     cart: state.cart,
     // userId: state.user.id
