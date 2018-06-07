@@ -1,10 +1,19 @@
 import React from "react";
 import { me } from "../store";
 import { connect } from "react-redux";
-import { fetchAccount } from "../store/reducers/accountReducer";
+import AccountStatic from "./AccountStatic";
+import OrderList from './OrderList'
 
 const AccountDetails = props => {
-  return <div>These are the account details</div>;
+  console.log("these are account details", props);
+  const user = props.userAccount.details
+  const orders = props.userAccount.details.orders
+  return (
+    <div>
+      <AccountStatic user={user} />
+      <OrderList orders={orders} />
+    </div>
+  );
 };
 
 const mapState = state => {
