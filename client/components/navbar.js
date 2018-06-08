@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { logout } from "../store";
-import { fetchCategories } from "../store/reducers/categoryReducer";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logout } from '../store';
+import { fetchCategories } from '../store/reducers/categoryReducer';
 
 const Navbar = props => {
-  const { handleClick, isLoggedIn, categories, firstName } = props;
+  const { handleClick, isLoggedIn, categories, firstName, cart } = props;
   return (
     <div>
       <div>
@@ -33,8 +33,15 @@ const Navbar = props => {
               Food
             </Link>
             <Link to="/account/cart">
-              <img className="nav-icon" src="/img/shopping-basket.png" />
-              Cart
+              {cart.products && cart.products.length ? (
+                <img className="nav-icon" src="/img/shopping-basket.png" />
+              ) : (
+                <img
+                  className="nav-icon"
+                  src="/img/shopping-basket-empty.png"
+                />
+              )}{' '}
+              {cart.products && cart.products.length} Cart
             </Link>
             <Link to="/products/search">
               <img className="nav-icon" src="/img/search.png" />Search
@@ -43,7 +50,7 @@ const Navbar = props => {
               <div>
                 {/* The navbar will show these links after you log in */}
                 <Link to="/account">
-                  <img className="nav-icon" src="/img/godzilla.png" />Welcome{" "}
+                  <img className="nav-icon" src="/img/godzilla.png" />Welcome{' '}
                   {firstName}
                 </Link>
                 <a href="#" onClick={handleClick}>
@@ -77,7 +84,8 @@ const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
     categories: state.categories,
-    firstName: state.user.firstName
+    firstName: state.user.firstName,
+    cart: state.cart.cart,
   };
 };
 
@@ -88,7 +96,7 @@ const mapDispatch = dispatch => {
     },
     categories: () => {
       dispatch(fetchCategories());
-    }
+    },
   };
 };
 
@@ -102,5 +110,5 @@ export default connect(
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
 };

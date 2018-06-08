@@ -26,7 +26,9 @@ const ProductDetail = props => {
         <div>
           <h3>About this Product:</h3>
           <br />
-          {selectedProduct.description}
+          <div className="product-description">
+            {selectedProduct.description}
+          </div>
         </div>
       </div>
       <div id="add-to-cart">
