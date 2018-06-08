@@ -33,36 +33,6 @@ const Product = db.define('product', {
     type: Sequelize.INTEGER,
     defaultValue: 0,
   },
-  // averageRating: {
-  //   type: Sequelize.VIRTUAL,
-  //   async get() {
-  //     try {
-  //       const reviews = await Review.findAll({ where: { productId: this.id } });
-  //       let sum = 0;
-  //       reviews.length
-  //         ? reviews.map(review => {
-  //             sum += review.rating;
-  //             return review;
-  //           })
-  //         : (sum = 0);
-  //       return sum / reviews.length || 1;
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   },
-  // },
 });
-
-// Product.prototype.averageRating = async function() {
-//   const reviews = await Review.findAll({ where: { productId: this.id } });
-//   let sum = 0;
-//   reviews.length
-//     ? reviews.map(review => {
-//         sum += review.rating;
-//         return review;
-//       })
-//     : (sum = 0);
-//   return sum / reviews.length || 1;
-// };
 
 module.exports = Product;
