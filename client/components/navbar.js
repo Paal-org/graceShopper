@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
 import { fetchCategories } from '../store/reducers/categoryReducer';
+import { clearCart } from '../store/reducers/cartReducer';
+import { clearAccount } from '../store/reducers/accountReducer';
 
 const Navbar = props => {
   const { handleClick, isLoggedIn, categories, firstName, cart } = props;
@@ -93,6 +95,8 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout());
+      dispatch(clearCart());
+      dispatch(clearAccount());
     },
     categories: () => {
       dispatch(fetchCategories());
