@@ -1,6 +1,7 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Products from './Products';
+import React from "react";
+import { connect } from "react-redux";
+import Products from "./Products";
+import { Link } from "react-router-dom";
 
 const ProductsList = props => {
   const { products, category } = props;
@@ -10,6 +11,11 @@ const ProductsList = props => {
   return (
     <div>
       {category ? <h1>{category}</h1> : <h1>ALL PRODUCTS</h1>}
+      <Link to="/products/addproduct">
+        <button type="button" className="add-product">
+          Add Product
+        </button>
+      </Link>
       <Products products={products} />
     </div>
   );
@@ -28,7 +34,7 @@ const mapState = (state, ownProps) => {
   }
   return {
     products: productList,
-    category: header.toUpperCase(),
+    category: header.toUpperCase()
   };
 };
 

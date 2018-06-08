@@ -23,6 +23,7 @@ const SingleProduct = props => {
         <div>${product.price}</div>
         <div className="card-footer">
           <AddToCartButton product={product} />
+          {/* edit button if admin */}
         </div>
       </div>
     </div>

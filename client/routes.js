@@ -10,6 +10,7 @@ import { fetchCategories } from "./store/reducers/categoryReducer";
 import ProductsList from "./components/ProductsList";
 import ProductDetail from "./components/ProductDetail";
 import Search from "./components/Search";
+import AddProduct from "./components/AddProduct";
 
 import Cart from "./components/Cart";
 
@@ -39,6 +40,7 @@ class Routes extends Component {
         <Route exact path="/products/food" component={ProductsList} />
         <Route exact path="/products/drinks" component={ProductsList} />
         <Route exact path="/products/search" component={Search} />
+        <Route exact path="/products/addproduct" component={AddProduct} />
         <Route exact path="/products/drinks/:id" component={ProductDetail} />
         <Route exact path="/products/food/:id" component={ProductDetail} />
         <Route exact path="/account/cart" component={Cart} />
