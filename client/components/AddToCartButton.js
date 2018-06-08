@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { postToCart } from '../store/reducers/cartReducer';
+import { postToCart,putToCart } from '../store/reducers/cartReducer';
 
 //*-----------------     Default state     -----------------*/
 const defaultState = {
@@ -40,9 +40,12 @@ class AddToCartButton extends Component {
       });
       this.setState(defaultState);
     }
-    // else {
-    //     dispatch update thunk
-    // }
+    else {
+        this.props.putToCart({
+          purchaseQuantity: this.state.purchaseQuantity,
+          product
+        })
+    }
   }
 
   //*-----------------     Render     -----------------*/
@@ -88,6 +91,9 @@ const mapDispatch = dispatch => {
     postToCart: item => {
       dispatch(postToCart(item));
     },
+    putToCart: item =>{
+      dispatch(putToCart(item))
+    }
   };
 };
 

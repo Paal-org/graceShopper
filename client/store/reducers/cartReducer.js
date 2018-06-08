@@ -3,6 +3,7 @@ import axios from 'axios';
 const GET_CART = 'GET_CART';
 const ADD_TO_CART = 'ADD_TO_CART';
 const CLEAR_CART = 'CLEAR_CART';
+const UPDATE_CART = 'UPDATE_CART';
 
 const getCart = cart => ({ type: GET_CART, cart });
 const addToCart = item => {
@@ -10,6 +11,9 @@ const addToCart = item => {
 };
 export const clearCart = () => {
   return { type: CLEAR_CART };
+};
+const updateCart = item => {
+  return { type: UPDATE_CART, item };
 };
 
 const initialState = {
@@ -31,6 +35,13 @@ export const postToCart = item => {
   };
 };
 
+export const putToCart = item => {
+  return async dispatch => {
+    const { data } = await axios.put('/api/cart', item);
+    dispatch(updateCart(data));
+  };
+};
+
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case GET_CART: {
@@ -47,6 +58,12 @@ export default function cartReducer(state = initialState, action) {
       };
     case CLEAR_CART:
       return { cart: {}, isFetching: true };
+    case UPDATE_CART:
+      let productsArr = state.cart.products.map(product => {
+        return product.id === action.item.id ? action.item : product;
+      });
+      return { ...state.cart, products: productsArr };
+    //double check that the quantity on the action.item is hte updated quantity
     default:
       return state;
   }

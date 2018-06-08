@@ -40,6 +40,25 @@ router.post('/', async (req, res, next) => {
   }
 });
 
+router.put('/', async (req, res, next) => {
+  try {
+    const userOrder = await Order.findOne({
+      where: { userId: req.user.id, status: 'cart' },
+    });
+    if (userOrder) {
+      const lineItem = await LineItem.update({
+        purchaseQuantity: req.body.purchaseQuantity,
+      });
+      const objToSend = Object.assign({ lineItem }, req.body.product);
+      res.json(objToSend);
+    } else {
+      res.sendStatus(404);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
 //use query to see current cart vs. complete
 
 module.exports = router;
