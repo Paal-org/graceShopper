@@ -27,14 +27,17 @@ class AddToCartButton extends Component {
     const { product } = this.props;
     return (
       <div>
-        <button
-          className="addToCartButton"
-          disabled={!product.inventoryQuantity}
-          type="button"
-          onClick={this.addToCart}
-        >
-          Add to Cart
-        </button>
+        <div>
+          <input type="number" name="quantity" defaultValue="1" min="1" />
+          <button
+            className="addToCartButton"
+            disabled={!product.inventoryQuantity}
+            type="button"
+            onClick={this.addToCart}
+          >
+            Add to Cart
+          </button>
+        </div>
       </div>
     );
   }

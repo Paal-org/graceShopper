@@ -29,6 +29,7 @@ form div {
   height: 30px;
 }
 
+/***************** BUTTONS ******************/
 .addToCartButton {
   background-color: #9aecdb;
   color: #182c61;
@@ -61,3 +62,13 @@ form div {
 .order-list:nth-child(2) {
   border: solid 1px lightgrey;
 }
+
+/***************** TEXT ******************/
+.no-review-title {
+  font-size: 18px;
+}
+
+.product-description {
+  font-family: 'Abel';font-size: 18px;
+}
+
