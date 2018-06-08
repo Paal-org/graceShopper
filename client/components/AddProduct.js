@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { createProduct } from "../store/reducers/productReducer";
+import { addProduct } from "../store/reducers/productReducer";
+import ProductForm from "./ProductForm";
 
 const defaultState = {
   name: "",
   imageUrl: "",
   description: "",
   price: "",
-  inventoryQuantity: ""
+  inventoryQuantity: "",
+  categoryId: ""
 };
 
 class AddProduct extends Component {
@@ -31,15 +33,29 @@ class AddProduct extends Component {
       imageUrl: this.state.imageUrl,
       description: this.state.description,
       price: this.state.price,
-      inventoryQuantity: this.state.inventoryQuantity
+      inventoryQuantity: this.state.inventoryQuantity,
+      categoryId: this.state.categoryId
     });
     this.setState(defaultState);
   }
 
   render() {
-    return <div>SUP</div>;
+    return (
+      <ProductForm
+        {...this.props}
+        {...this.state}
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+      />
+    );
   }
 }
+
+const mapState = state => {
+  return {
+    categories: state.categories
+  };
+};
 
 const mapDispatch = (dispatch, ownProps) => {
   return {
@@ -48,6 +64,6 @@ const mapDispatch = (dispatch, ownProps) => {
 };
 
 export default connect(
-  null,
+  mapState,
   mapDispatch
 )(AddProduct);

@@ -8,8 +8,9 @@ const createProduct = product => ({ type: CREATE_PRODUCT, product });
 
 export const addProduct = (product, ownProps) => {
   return async dispatch => {
-    const { data } = await axios.get("/api/products");
+    const { data } = await axios.post("/api/products", product);
     dispatch(createProduct(data));
+    ownProps.history.push(`/products/${data.category.name}/${data.id}`);
   };
 };
 
