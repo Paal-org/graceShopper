@@ -1,11 +1,13 @@
 import axios from 'axios';
 import history from '../history';
+import { fetchCart } from './reducers/cartReducer';
+import { fetchAccount } from './reducers/accountReducer';
 
 /**
  * ACTION TYPES
  */
-const GET_USER = 'GET_USER';
-const REMOVE_USER = 'REMOVE_USER';
+export const GET_USER = 'GET_USER';
+export const REMOVE_USER = 'REMOVE_USER';
 
 /**
  * INITIAL STATE
@@ -38,6 +40,8 @@ export const auth = (method, ...args) => dispatch =>
     .then(
       res => {
         dispatch(getUser(res.data));
+        dispatch(fetchCart());
+        dispatch(fetchAccount());
         history.push('/home');
       },
       authError => {

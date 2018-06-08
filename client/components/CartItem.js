@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const CartItem = props => {
   const { product } = props;
-  console.log('cart item product', product);
   return (
     <div className="card">
       <div>

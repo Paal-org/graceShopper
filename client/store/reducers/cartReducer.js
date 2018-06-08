@@ -2,10 +2,14 @@ import axios from 'axios';
 
 const GET_CART = 'GET_CART';
 const ADD_TO_CART = 'ADD_TO_CART';
+const CLEAR_CART = 'CLEAR_CART';
 
 const getCart = cart => ({ type: GET_CART, cart });
 const addToCart = item => {
   return { type: ADD_TO_CART, item };
+};
+export const clearCart = () => {
+  return { type: CLEAR_CART };
 };
 
 const initialState = {
@@ -29,8 +33,10 @@ export const postToCart = item => {
 
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_CART:
+    case GET_CART: {
+      console.log('state in get_cart', action.cart);
       return { cart: action.cart, isFetching: true };
+    }
     case ADD_TO_CART:
       return {
         cart: {
@@ -39,6 +45,8 @@ export default function cartReducer(state = initialState, action) {
         },
         isFetching: true,
       };
+    case CLEAR_CART:
+      return { cart: {}, isFetching: true };
     default:
       return state;
   }
