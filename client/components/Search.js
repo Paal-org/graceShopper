@@ -38,7 +38,7 @@ class Search extends Component {
             onChange={this.handleChange}
           />
         </form>
-        <div>
+        <div className="card-columns">
           {this.state.products.map(product => (
             <SingleProduct product={product} key={product.id} />
           ))}

@@ -14,7 +14,6 @@ const AccountStatic = props => {
       <div>Last Name: {user.lastName}</div>
       <div>Address: {user.address}</div>
       <div>Email: {user.email}</div>
-      <button type="button">Edit Account</button>
     </div>
   );
 };
