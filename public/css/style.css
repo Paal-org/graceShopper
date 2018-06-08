@@ -34,15 +34,14 @@ form div {
   background-color: #9aecdb;
   color: #182c61;
   border: none;
-  padding: 8px 12px;
   margin: 25px;
-  font-size: 15px;
   border-radius: 12px;
 }
 
 .addToCartButton:hover {
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    background-color: #58B19F
 }
 .addToCartButton:disabled {
   background-color: #cad3c8;

@@ -5,6 +5,7 @@ import CartItem from './CartItem';
 
 const Cart = props => {
   const products = props.cart.cart.products;
+  console.log('products in cart', products);
   return (
     <div className="card-columns">
       {props.cart.isFetching &&

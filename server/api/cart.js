@@ -19,15 +19,18 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+    console.log('WHAT IS THE BODY COMING IN????', req.body);
     const userOrder = await Order.findOne({
       where: { userId: req.user.id, status: 'cart' },
     });
     if (userOrder) {
       const lineItem = await LineItem.create({
+        purchaseQuantity: req.body.purchaseQuantity,
         orderId: userOrder.id,
-        productId: req.body.id,
+        productId: req.body.product.id,
       });
-      res.json(req.body);
+      console.log('req.body', req.body);
+      res.json(req.body.product);
     } else {
       res.sendStatus(404);
     }

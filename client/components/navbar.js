@@ -6,7 +6,7 @@ import { logout } from '../store';
 import { fetchCategories } from '../store/reducers/categoryReducer';
 
 const Navbar = props => {
-  const { handleClick, isLoggedIn, categories, firstName } = props;
+  const { handleClick, isLoggedIn, categories, firstName, cart } = props;
   return (
     <div>
       <div>
@@ -33,8 +33,15 @@ const Navbar = props => {
               Food
             </Link>
             <Link to="/account/cart">
-              <img className="nav-icon" src="/img/shopping-basket.png" />
-              Cart
+              {cart.products && cart.products.length ? (
+                <img className="nav-icon" src="/img/shopping-basket.png" />
+              ) : (
+                <img
+                  className="nav-icon"
+                  src="/img/shopping-basket-empty.png"
+                />
+              )}{' '}
+              {cart.products && cart.products.length} Cart
             </Link>
             <Link to="/products/search">
               <img className="nav-icon" src="/img/search.png" />Search
@@ -78,6 +85,7 @@ const mapState = state => {
     isLoggedIn: !!state.user.id,
     categories: state.categories,
     firstName: state.user.firstName,
+    cart: state.cart.cart,
   };
 };
 
