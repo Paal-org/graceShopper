@@ -4,18 +4,20 @@ import Products from "./Products";
 import { Link } from "react-router-dom";
 
 const ProductsList = props => {
-  const { products, category } = props;
+  const { products, category, user } = props;
 
   // const urlPath = props.location.pathname;
   // const header = urlPath.slice(10).toUpperCase()
   return (
     <div>
       {category ? <h1>{category}</h1> : <h1>ALL PRODUCTS</h1>}
-      <Link to="/products/addproduct">
-        <button type="button" className="add-product">
-          Add Product
-        </button>
-      </Link>
+      {user.isAdmin && (
+        <Link to="/products/addproduct">
+          <button type="button" className="add-product">
+            Add Product
+          </button>
+        </Link>
+      )}
       <Products products={products} />
     </div>
   );
@@ -33,6 +35,7 @@ const mapState = (state, ownProps) => {
     productList = state.products.list;
   }
   return {
+    user: state.user,
     products: productList,
     category: header.toUpperCase()
   };
