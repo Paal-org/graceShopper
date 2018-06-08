@@ -7,9 +7,11 @@ const Order = props => {
   return (
     <div>
       <h2>Order #{order.id}</h2>
-      {products.map(product => (
-        <OrderLineItem key={product.id} product={product} />
-      ))}
+      <div className="line-item">
+        {products.map(product => (
+          <OrderLineItem key={product.id} product={product} />
+        ))}
+      </div>
     </div>
   );
 };

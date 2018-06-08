@@ -1,16 +1,18 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const CartItem = props => {
   const { product } = props;
   return (
-    <div>
+    <div className="card">
       <div>
-        <div>
-          <h3>{product.name}</h3>
-        </div>
-        <div>
-          <img src={product.imageUrl} />
+        <Link to={`/products/${product.category.name}/${product.id}`}>
+          <img className="card-img-top" src={product.imageUrl} />
+        </Link>
+        <div className="card-title">
+          <Link to={`/products/${product.category.name}/${product.id}`}>
+            {product.name}
+          </Link>
         </div>
         <div>Price: ${product.price}</div>
         <form>

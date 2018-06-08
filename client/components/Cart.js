@@ -6,7 +6,7 @@ import CartItem from './CartItem';
 const Cart = props => {
   const products = props.cart.cart.products;
   return (
-    <div>
+    <div className="card-columns">
       {props.cart.isFetching &&
         products.map(product => {
           return <CartItem key={product.id} product={product} />;
