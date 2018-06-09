@@ -3,12 +3,12 @@ const { Order, Product, Category, LineItem } = require('../db/models');
 
 router.get('/', async (req, res, next) => {
   try {
-    const userOrders = await Order.findOne({
+    const userOrder = await Order.findOne({
       where: { userId: req.user.id, status: 'cart' },
       include: [{ all: true }, { model: Product, include: [Category] }],
     });
-    if (userOrders) {
-      res.json(userOrders);
+    if (userOrder) {
+      res.json(userOrder);
     } else {
       res.sendStatus(404);
     }
@@ -46,7 +46,7 @@ router.put('/', async (req, res, next) => {
       where: { userId: req.user.id, status: 'cart' },
     });
     const lineItem = await LineItem.findOne({
-      where: { orderId: userOrder.id },
+      where: { orderId: userOrder.id, productId: req.body.product.id },
     });
     if (lineItem) {
       const updatedLineItem = await lineItem.update({
@@ -64,6 +64,27 @@ router.put('/', async (req, res, next) => {
     next(err);
   }
 });
+
+//not removing the right one! and rendering the right way in the reducer
+// router.delete('/', async (req, res, next) => {
+//   try {
+//     const userOrder = await Order.findOne({
+//       where: { userId: req.user.id, status: 'cart' },
+//     });
+//     const lineItem = await LineItem.findOne({
+//       where: { orderId: userOrder.id },
+//     });
+//     if (lineItem) {
+//       console.log('CART ROUTE', userOrder);
+//       await lineItem.destroy();
+//       res.status(204).send({ cart: { products: userOrder } });
+//     } else {
+//       res.sendStatus(404);
+//     }
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 //use query to see current cart vs. complete
 
