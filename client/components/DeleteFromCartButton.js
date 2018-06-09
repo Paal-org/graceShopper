@@ -20,9 +20,13 @@ class DeleteFromCartButton extends Component {
   //*-----------------     Render     -----------------*/
   render() {
     return (
-      <div className="btn btn-secondary deleteButton">
-        <button type="button" onClick={this.deleteCartItem}>
-          Remove
+      <div>
+        <button
+          className="btn btn-danger btn-sm"
+          type="button"
+          onClick={this.deleteCartItem}
+        >
+          <i className="fa fa-trash-o" />
         </button>
       </div>
     );
