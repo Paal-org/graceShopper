@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import CartItem from './CartItem';
 
 const Cart = props => {
-  //{props.cart.cart &&
   const products = props.cart.products;
   return (
     <div className="card-columns">

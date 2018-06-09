@@ -4,6 +4,7 @@ const GET_CART = 'GET_CART';
 const ADD_TO_CART = 'ADD_TO_CART';
 const CLEAR_CART = 'CLEAR_CART';
 const UPDATE_CART = 'UPDATE_CART';
+const DELETE_CART_ITEM = 'DELETE_CART_ITEM';
 
 const getCart = cart => ({ type: GET_CART, cart });
 const addToCart = item => {
@@ -14,6 +15,9 @@ export const clearCart = () => {
 };
 const updateCart = item => {
   return { type: UPDATE_CART, item };
+};
+const deleteCartItem = id => {
+  return { type: DELETE_CART_ITEM, id };
 };
 
 const initialState = {
@@ -42,7 +46,19 @@ export const putToCart = item => {
   };
 };
 
+export const destroyCartItem = id => {
+  return async dispatch => {
+    try {
+      await axios.delete(`/api/cart/${id}`);
+      dispatch(deleteCartItem(id));
+    } catch (err) {
+      console.error(`deleting cart: ${id} unsuccessful`, err);
+    }
+  };
+};
+
 export default function cartReducer(state = initialState, action) {
+  let productsArr;
   switch (action.type) {
     case GET_CART: {
       return { cart: action.cart, isFetching: true };
@@ -58,9 +74,17 @@ export default function cartReducer(state = initialState, action) {
     case CLEAR_CART:
       return { cart: {}, isFetching: true };
     case UPDATE_CART:
-      let productsArr = state.cart.products.map(product => {
+      productsArr = state.cart.products.map(product => {
         return product.id === action.item.id ? action.item : product;
       });
+      return {
+        cart: { ...state.cart, products: productsArr },
+        isFetching: true,
+      };
+    case DELETE_CART_ITEM:
+      productsArr = state.cart.products.filter(
+        product => product.id !== action.id
+      );
       return {
         cart: { ...state.cart, products: productsArr },
         isFetching: true,
