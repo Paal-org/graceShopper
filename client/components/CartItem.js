@@ -35,7 +35,7 @@ class CartItem extends Component {
   render() {
     const { product } = this.props;
     return (
-      <div className="card">
+      <div>
         <div>
           {
             <div>
