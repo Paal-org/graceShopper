@@ -9,6 +9,7 @@ import { clearAccount } from '../store/reducers/accountReducer';
 
 const Navbar = props => {
   const { handleClick, isLoggedIn, categories, firstName, cart } = props;
+
   return (
     <div>
       <div>
@@ -88,6 +89,7 @@ const mapState = state => {
     categories: state.categories,
     firstName: state.user.firstName,
     cart: state.cart.cart,
+    isFetching: state.cart.isFetching,
   };
 };
 
