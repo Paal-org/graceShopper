@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import AddToCartButton from './AddToCartButton';
 import AverateRating from './AverateRating';
 import ProductReview from './ProductReview';
+import { HashLink as Link } from 'react-router-hash-link';
 
 const ProductDetail = props => {
   const { selectedProduct } = props;
@@ -17,6 +18,9 @@ const ProductDetail = props => {
         <br />
         <div>
           <AverateRating product={selectedProduct} />
+        </div>
+        <div>
+          <Link to={`${selectedProduct.id}/#reviewList`}>Reviews</Link>
         </div>
         <br />
         <div>
@@ -45,7 +49,7 @@ const ProductDetail = props => {
         </div>
         <br />
       </div>
-      <div>
+      <div id="reviewList">
         <h3>Customer Reviews:</h3>
         {reviews.map(review => (
           <ProductReview key={review.id} review={review} />
