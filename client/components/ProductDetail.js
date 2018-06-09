@@ -75,8 +75,7 @@ const ProductDetail = props => {
       </div>
       <div id="reviewList">
         <div className="row">
-          #BDC581
-          <h3>Customer Reviews: .</h3>
+          <h3>Customer Reviews: </h3>
           <p>
             <a
               data-toggle="collapse"
@@ -84,15 +83,34 @@ const ProductDetail = props => {
               role="button"
               aria-expanded="false"
               aria-controls="collapseExample"
+              style={{ padding: '15px' }}
             >
               Write a Review
             </a>
           </p>
           <div className="collapse w-100 p-3" id="collapseExample">
-            <div className="card card-body" style={{ width: '100%' }}>
-              <AddReview product={selectedProduct} />
-
-            </div>
+            {user.id ? (
+              <div
+                className="card card-body"
+                style={{ width: '100%', padding: '15px' }}
+              >
+                <AddReview product={selectedProduct} />
+              </div>
+            ) : (
+              <div className="card card-body" style={{ width: '100%' }}>
+                Please Login/ Signup to write a review
+                <br />
+                <br />
+                <div className="row">
+                  <Link to="/login" className="col-2">
+                    <img className="nav-icon" src="/img/enter.png" />Login
+                  </Link>
+                  <Link to="/signup" className="col-2">
+                    <img className="nav-icon" src="/img/edit.png" />Sign Up
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
         </div>
         {reviews.map(review => (

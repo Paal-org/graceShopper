@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Rating from 'react-rating';
 import { connect } from 'react-redux';
-import { postReview } from '../store/reducers/reviewReducer';
+import { postReview } from '../store/reducers/productReducer';
 
 //*-----------------     Default state     -----------------*/
 const defaultState = {
@@ -26,9 +26,8 @@ class AddReview extends Component {
       [evt.target.name]: evt.target.value,
     });
   }
-  
+
   handleRating(evt) {
-    console.log('EVENT', typeof evt);
     this.setState({
       rating: Number(evt),
     });
@@ -46,13 +45,6 @@ class AddReview extends Component {
 
   //*-----------------     Render     -----------------*/
   render() {
-    const { product } = this.props;
-    console.log(
-      'ARE WE GRABBING STUFF?',
-      this.state.content,
-      'WHAT IS THE RATING',
-      this.state.rating
-    );
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -84,7 +76,7 @@ class AddReview extends Component {
           </label>
           <button
             className="edit-product"
-            // disabled={!this.props.content}
+            disabled={!this.state.content || !this.state.rating}
             type="submit"
           >
             Submit
@@ -98,7 +90,7 @@ class AddReview extends Component {
 //*-----------------     MAPPING TO STORE     -----------------*/
 const mapState = state => {
   return {
-    reviews: state.reviews.details,
+    reviews: state.reviews,
   };
 };
 

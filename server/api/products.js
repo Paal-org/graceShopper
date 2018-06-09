@@ -54,13 +54,21 @@ router.put('/:id', async (req, res, next) => {
 
 router.post('/:id/review', async (req, res, next) => {
   try {
-    const review = await Review.create({
+    await Review.create({
       userId: req.user.id,
       productId: req.params.id,
       rating: req.body.rating,
       content: req.body.content,
     });
-    res.json(review);
+    const reviewUser = await User.findById(req.user.id);
+    const objToSend = {
+      user: reviewUser,
+      userId: req.user.id,
+      productId: req.params.id,
+      rating: req.body.rating,
+      content: req.body.content,
+    };
+    res.json(objToSend);
   } catch (err) {
     next(err);
   }
