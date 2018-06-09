@@ -48,6 +48,7 @@ form div {
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
   background-color: #58b19f;
 }
+.edit-product:disabled,
 .addToCartButton:disabled {
   background-color: #cad3c8;
   color: #2c3a47;
@@ -74,6 +75,11 @@ form div {
 
 .cart-image{
   max-height: 250px;
+  width: auto;
+}
+
+.product-detail-image{
+  max-height: 500px;
   width: auto;
 }
 

@@ -23,7 +23,9 @@ const AverageRating = props => {
           readonly
         />
       ) : (
-        <div className='no-review-title'>No reviews, be the first to leave one</div>
+        <div className="no-review-title">
+          No reviews, be the first to leave one
+        </div>
       )}
     </div>
   );
