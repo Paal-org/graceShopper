@@ -5,7 +5,6 @@ import Order from "./Order";
 
 const OrderList = props => {
   const orders = props.orders || [];
-  console.log("orders", orders);
   return (
     <div>
       <h1>Order List</h1>

@@ -4,21 +4,21 @@ import { connect } from 'react-redux';
 import CartItem from './CartItem';
 
 const Cart = props => {
-  const products = props.cart.cart.products;
+  //{props.cart.cart &&
+  const products = props.cart.products;
   return (
     <div className="card-columns">
-      {props.cart.isFetching &&
-        products.map(product => {
-          return <CartItem key={product.id} product={product} />;
-        })}
+      {products.map(product => {
+        return <CartItem key={product.id} product={product} />;
+      })}
     </div>
+    //}
   );
 };
 
 const mapState = state => {
   return {
-    cart: state.cart,
-    // userId: state.user.id
+    cart: state.cart.cart,
   };
 };
 
