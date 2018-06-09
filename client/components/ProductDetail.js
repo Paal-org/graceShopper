@@ -39,9 +39,9 @@ const ProductDetail = props => {
         <div>Price: {selectedProduct.price}</div>
         <br />
         <div>
-          <h3>In stock: </h3>
+          <h3>In stock: {selectedProduct.inventoryQuantity}</h3>
           {selectedProduct.inventoryQuantity
-            ? 'Yes get some before they are gone'
+            ? 'Get some before they are gone'
             : 'Sorry! we are out of stock'}
         </div>
         <div>

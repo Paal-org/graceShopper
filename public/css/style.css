@@ -86,3 +86,12 @@ form div {
   font-family: "Abel";
   font-size: 18px;
 }
+
+.warning {
+  /* padding: 0 0.5em; */
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  background-color: orange;
+  color: white;
+  /* margin-left: 1em; */
+}

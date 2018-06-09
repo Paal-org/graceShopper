@@ -53,10 +53,17 @@ class AddToCartButton extends Component {
   //*-----------------     Render     -----------------*/
   render() {
     const { product } = this.props;
+    const warningMessage =
+      this.state.purchaseQuantity > product.inventoryQuantity
+        ? `Only ${product.inventoryQuantity} left in stock`
+        : '';
     return (
       <form onSubmit={this.addToCart}>
         <div>
           <div className="form-inline">
+            {warningMessage && (
+              <span className="warning">{warningMessage}</span>
+            )}
             <div className="form-group mx-sm-1 mb-2">
               <input
                 className="form-control form-control-sm"
@@ -68,7 +75,10 @@ class AddToCartButton extends Component {
               />
               <button
                 className="btn btn-primary btn-sm addToCartButton"
-                disabled={!product.inventoryQuantity}
+                disabled={
+                  !product.inventoryQuantity ||
+                  this.state.purchaseQuantity > product.inventoryQuantity
+                }
                 type="submit"
               >
                 Add to Cart
