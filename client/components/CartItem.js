@@ -37,7 +37,7 @@ class CartItem extends Component {
     return (
       <div className="card">
         <div>
-          {product && (
+          {
             <div>
               <Link to={`/products/${product.category.name}/${product.id}`}>
                 <img className="card-img-top" src={product.imageUrl} />
@@ -83,7 +83,7 @@ class CartItem extends Component {
                 {/* </div> */}
               </form>
             </div>
-          )}
+          }
         </div>
       </div>
     );

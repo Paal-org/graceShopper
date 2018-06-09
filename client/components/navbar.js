@@ -8,17 +8,8 @@ import { clearCart } from '../store/reducers/cartReducer';
 import { clearAccount } from '../store/reducers/accountReducer';
 
 const Navbar = props => {
-  const {
-    handleClick,
-    isLoggedIn,
-    categories,
-    firstName,
-    cart,
-    isFetching,
-  } = props;
-  if (!isFetching) {
-    return <div>Loading...</div>;
-  }
+  const { handleClick, isLoggedIn, categories, firstName, cart } = props;
+
   return (
     <div>
       <div>
@@ -45,7 +36,7 @@ const Navbar = props => {
               Food
             </Link>
             <Link to="/account/cart">
-              {cart.products.length ? (
+              {cart.products && cart.products.length ? (
                 <img className="nav-icon" src="/img/shopping-basket.png" />
               ) : (
                 <img
@@ -53,7 +44,7 @@ const Navbar = props => {
                   src="/img/shopping-basket-empty.png"
                 />
               )}{' '}
-              {cart.products.length} Cart
+              {cart.products && cart.products.length} Cart
             </Link>
             <Link to="/products/search">
               <img className="nav-icon" src="/img/search.png" />Search
@@ -98,11 +89,7 @@ const mapState = state => {
     categories: state.categories,
     firstName: state.user.firstName,
     cart: state.cart.cart,
-    isFetching:
-      state.products.isFetching &&
-      state.cart.isFetching &&
-      state.categories.isFetching &&
-      state.account.isFetching,
+    isFetching: state.cart.isFetching,
   };
 };
 
