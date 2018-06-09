@@ -1,6 +1,10 @@
 import React from "react";
 
+
 const ProductForm = props => {
+  const { handleSubmit, handleChange, categories } = props
+  console.log('PROPS', props)
+  console.log('FETCHING', props.categories)
   return (
     <div>
       <div className="product-form" />
@@ -9,13 +13,13 @@ const ProductForm = props => {
         <h1>Product Info</h1>
         <div className="signin-container">
           <div className="buffer">
-            <form onSubmit={props.handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label>Product Name</label>
                 <input
                   name="name"
                   type="text"
-                  onChange={props.handleChange}
+                  onChange={handleChange}
                   className="form-control"
                   required
                 />
@@ -25,7 +29,7 @@ const ProductForm = props => {
                 <input
                   name="image url"
                   type="text"
-                  onChange={props.handleChange}
+                  onChange={handleChange}
                   className="form-control"
                   required
                 />
@@ -35,7 +39,7 @@ const ProductForm = props => {
                 <input
                   name="description"
                   type="text"
-                  onChange={props.handleChange}
+                  onChange={handleChange}
                   className="form-control"
                   required
                 />
@@ -45,7 +49,7 @@ const ProductForm = props => {
                 <input
                   name="price"
                   type="text"
-                  onChange={props.handleChange}
+                  onChange={handleChange}
                   className="form-control"
                   required
                 />
@@ -55,7 +59,7 @@ const ProductForm = props => {
                 <input
                   name="inventoryQuantity"
                   type="text"
-                  onChange={props.handleChange}
+                  onChange={handleChange}
                   className="form-control"
                   required
                 />
@@ -65,12 +69,12 @@ const ProductForm = props => {
                 <select
                   name="categoryId"
                   className="form-control"
-                  onChange={props.handleChange}
+                  onChange={handleChange}
                 >
                   <option value="Select Category" className="form-control">
                     Select Category
                   </option>
-                  {props.categories.list.map(category => (
+                  {categories && categories.list.map(category => (
                     <option
                       value={category.id}
                       key={category.id}
@@ -91,5 +95,7 @@ const ProductForm = props => {
     </div>
   );
 };
+
+
 
 export default ProductForm;

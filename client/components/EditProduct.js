@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import ProductForm from './ProductForm'
 
 class EditProduct extends Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class EditProduct extends Component {
   render() {
     return (
       <div>
-        <ProductForm product={product} />
+        <ProductForm />
       </div>
     )
   }
@@ -17,7 +18,7 @@ class EditProduct extends Component {
 
 const mapState = state => {
   return {
-    product: state.product
+    products: state.products
   }
 }
 

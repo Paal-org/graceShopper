@@ -40,19 +40,28 @@ class AddProduct extends Component {
   }
 
   render() {
+    const { isFetching, categories } = this.props;
+    console.log('MOAR PROPS', this.props)
+    if (!isFetching) {
+      return <div>Loading...</div>;
+    }
     return (
-      <ProductForm
-        {...this.props}
-        {...this.state}
-        handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit}
-      />
+      <div>
+
+        {categories && (<ProductForm
+          {...this.props}
+          {...this.state}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        />)}
+      </div>
     );
   }
 }
 
 const mapState = state => {
   return {
+    isFetching: state.categories.isFetching,
     categories: state.categories
   };
 };
