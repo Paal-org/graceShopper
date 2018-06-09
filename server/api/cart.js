@@ -45,11 +45,17 @@ router.put('/', async (req, res, next) => {
     const userOrder = await Order.findOne({
       where: { userId: req.user.id, status: 'cart' },
     });
-    if (userOrder) {
-      const lineItem = await LineItem.update({
+    const lineItem = await LineItem.findOne({
+      where: { orderId: userOrder.id },
+    });
+    if (lineItem) {
+      const updatedLineItem = await lineItem.update({
         purchaseQuantity: req.body.purchaseQuantity,
       });
-      const objToSend = Object.assign({ lineItem }, req.body.product);
+      const objToSend = Object.assign({
+        ...req.body.product,
+        lineItem: updatedLineItem,
+      });
       res.json(objToSend);
     } else {
       res.sendStatus(404);

@@ -45,7 +45,6 @@ export const putToCart = item => {
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case GET_CART: {
-      console.log('state in get_cart', action.cart);
       return { cart: action.cart, isFetching: true };
     }
     case ADD_TO_CART:
@@ -62,8 +61,10 @@ export default function cartReducer(state = initialState, action) {
       let productsArr = state.cart.products.map(product => {
         return product.id === action.item.id ? action.item : product;
       });
-      return { ...state.cart, products: productsArr };
-    //double check that the quantity on the action.item is hte updated quantity
+      return {
+        cart: { ...state.cart, products: productsArr },
+        isFetching: true,
+      };
     default:
       return state;
   }
