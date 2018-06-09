@@ -35,57 +35,48 @@ class CartItem extends Component {
   render() {
     const { product } = this.props;
     return (
-      <div>
-        <div>
-          {
-            <div>
-              <Link to={`/products/${product.category.name}/${product.id}`}>
-                <img className="card-img-top" src={product.imageUrl} />
-              </Link>
-              <div className="card-title">
+      <tr>
+        <td data-th="Product">
+          <div className="row">
+            <div className="col-sm-2 hidden-xs">
+              <img src={product.imageUrl} alt="..." className="cart-image" />
+            </div>
+            <div className="col-sm-10">
+              <h4 className="nomargin">
                 <Link to={`/products/${product.category.name}/${product.id}`}>
                   {product.name}
                 </Link>
-              </div>
-              <div>Price: ${product.price}</div>
-              <form onSubmit={this.updateToCart}>
-                <div className="form-inline">
-                  {/* <div className="form-group mx-sm-1 mb-2"> */}
-                  <input
-                    className="form-control form-control-sm"
-                    type="number"
-                    name="purchaseQuantity"
-                    value={this.state.purchaseQuantity}
-                    onChange={this.handleChange}
-                    min="1"
-                  />
-                  <div
-                    className="btn-toolbar"
-                    role="toolbar"
-                    aria-label="Toolbar with button groups"
-                  >
-                    <div
-                      className="btn-group mr-2"
-                      role="group"
-                      aria-label="First group"
-                    >
-                      <button
-                        className="btn btn-secondary addToCartButton"
-                        disabled={!product.inventoryQuantity}
-                        type="submit"
-                      >
-                        Update to Cart
-                      </button>
-                      <DeleteFromCartButton product={product} />
-                    </div>
-                  </div>
-                </div>
-                {/* </div> */}
-              </form>
+              </h4>
             </div>
-          }
-        </div>
-      </div>
+          </div>
+        </td>
+        <td data-th="Price">${product.price}</td>
+        <form onSubmit={this.updateToCart}>
+          <td data-th="Quantity">
+            <input
+              type="number"
+              className="form-control text-center"
+              name="purchaseQuantity"
+              value={this.state.purchaseQuantity}
+              onChange={this.handleChange}
+              min="1"
+            />
+          </td>
+          <td data-th="Subtotal" className="text-center">
+            {this.state.purchaseQuantity * product.price}
+          </td>
+          <td className="actions" data-th="">
+            <button
+              className="btn btn-info btn-sm"
+              disabled={!product.inventoryQuantity}
+              type="submit"
+            >
+              <i className="fa fa-refresh" />
+            </button>
+            <DeleteFromCartButton product={product} />
+          </td>
+        </form>
+      </tr>
     );
   }
 }

@@ -14,20 +14,44 @@ const Cart = props => {
       <table id="cart" className="table table-hover table-condensed">
         <thead>
           <tr>
-            <th style={{ width: '50%' }}>Product</th>
-            <th style="width:10%">Price</th>
-            <th style="width:8%">Quantity</th>
-            <th style="width:22%" className="text-center">
+            <th style={{ width: '40%' }}>Product</th>
+            <th style={{ width: '10%' }}>Price</th>
+            <th style={{ width: '45%' }}>Quantity</th>
+            {/* <th style={{ width: '5%' }} className="text-center">
               Subtotal
-            </th>
-            <th style="width:10%" />
+            </th> */}
+            {/* <th style={{ width: '5%' }} /> */}
           </tr>
         </thead>
+
+        <tbody>
+          {products &&
+            products.map(product => {
+              return <CartItem key={product.id} product={product} />;
+            })}
+        </tbody>
+        <tfoot>
+          <tr className="visible-xs">
+            <td className="text-center" />
+          </tr>
+          <tr>
+            <td>
+              <a href="#" className="btn btn-warning">
+                <i className="fa fa-angle-left" /> Continue Shopping
+              </a>
+            </td>
+            <td colSpan="2" className="hidden-xs" />
+            <td className="hidden-xs text-center">
+              <strong>Total $1.99</strong>
+            </td>
+            <td>
+              <a href="#" className="btn btn-success btn-block">
+                Checkout <i className="fa fa-angle-right" />
+              </a>
+            </td>
+          </tr>
+        </tfoot>
       </table>
-      {products &&
-        products.map(product => {
-          return <CartItem key={product.id} product={product} />;
-        })}
     </div>
   );
 };

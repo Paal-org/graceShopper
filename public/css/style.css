@@ -72,6 +72,11 @@ form div {
   width: auto;
 }
 
+.cart-image{
+  max-height: 250px;
+  width: auto;
+}
+
 .line-item img {
   max-height: 100px;
   width: auto;

@@ -1,12 +1,10 @@
-
 import React from 'react';
 import { connect } from 'react-redux';
 import AddToCartButton from './AddToCartButton';
 import AverateRating from './AverateRating';
 import ProductReview from './ProductReview';
-import { HashLink as Link } from 'react-router-hash-link';
-import { Link } from "react-router-dom";
-
+import { HashLink } from 'react-router-hash-link';
+import { Link } from 'react-router-dom';
 
 const ProductDetail = props => {
   const { selectedProduct, user } = props;
@@ -23,7 +21,7 @@ const ProductDetail = props => {
           <AverateRating product={selectedProduct} />
         </div>
         <div>
-          <Link to={`${selectedProduct.id}/#reviewList`}>Reviews</Link>
+          <HashLink to={`${selectedProduct.id}/#reviewList`}>Reviews</HashLink>
         </div>
         <br />
         <div>
@@ -33,10 +31,7 @@ const ProductDetail = props => {
         <div>
           {user.isAdmin && (
             <Link to="/products/editproduct">
-              <button
-                type="button"
-                className="btn btn-primary edit-product"
-              >
+              <button type="button" className="btn btn-primary edit-product">
                 Edit Product
               </button>
             </Link>
@@ -77,7 +72,7 @@ const mapState = (state, ownProps) => {
   const findProduct = state.products.list.find(product => product.id === id);
   return {
     selectedProduct: findProduct,
-    user: state.user
+    user: state.user,
   };
 };
 
