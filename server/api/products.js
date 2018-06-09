@@ -36,4 +36,20 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+router.put("/:id", async (req, res, next) => {
+  try {
+    const product = await Product.findById(req.params.id, {
+      include: [
+        { all: true },
+        { model: Category },
+        { model: Review, include: [User] }
+      ]
+    });
+    product.update(req.body);
+    res.json(product);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
