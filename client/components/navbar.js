@@ -45,9 +45,7 @@ const Navbar = props => {
               Food
             </Link>
             <Link to="/account/cart">
-              {' '}
-              cart
-              {/* {cart.products.length ? (
+              {cart.products.length ? (
                 <img className="nav-icon" src="/img/shopping-basket.png" />
               ) : (
                 <img
@@ -55,7 +53,7 @@ const Navbar = props => {
                   src="/img/shopping-basket-empty.png"
                 />
               )}{' '}
-              {cart.products.length} Cart */}
+              {cart.products.length} Cart
             </Link>
             <Link to="/products/search">
               <img className="nav-icon" src="/img/search.png" />Search

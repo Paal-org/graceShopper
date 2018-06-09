@@ -14,7 +14,6 @@ class DeleteFromCartButton extends Component {
 
   deleteCartItem() {
     const { deleteCartItem, product } = this.props;
-    console.log('deletebutton, what is products', product);
     deleteCartItem(product.id);
   }
 

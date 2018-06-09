@@ -5,7 +5,6 @@ import CartItem from './CartItem';
 
 const Cart = props => {
   const products = props.cart.products;
-  console.log('CART, WHAT ARE PROPS', props);
   return (
     <div className="card-columns">
       {products.map(product => {

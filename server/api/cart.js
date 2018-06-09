@@ -65,26 +65,24 @@ router.put('/', async (req, res, next) => {
   }
 });
 
-//not removing the right one! and rendering the right way in the reducer
-// router.delete('/', async (req, res, next) => {
-//   try {
-//     const userOrder = await Order.findOne({
-//       where: { userId: req.user.id, status: 'cart' },
-//     });
-//     const lineItem = await LineItem.findOne({
-//       where: { orderId: userOrder.id },
-//     });
-//     if (lineItem) {
-//       console.log('CART ROUTE', userOrder);
-//       await lineItem.destroy();
-//       res.status(204).send({ cart: { products: userOrder } });
-//     } else {
-//       res.sendStatus(404);
-//     }
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const userOrder = await Order.findOne({
+      where: { userId: req.user.id, status: 'cart' },
+    });
+    const lineItem = await LineItem.findOne({
+      where: { orderId: userOrder.id, productId: req.params.id },
+    });
+    if (lineItem) {
+      await lineItem.destroy();
+      res.sendStatus(204);
+    } else {
+      res.sendStatus(404);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
 
 //use query to see current cart vs. complete
 

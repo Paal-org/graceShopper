@@ -49,7 +49,7 @@ export const putToCart = item => {
 export const destroyCartItem = id => {
   return async dispatch => {
     try {
-      await axios.delete('/api/cart');
+      await axios.delete(`/api/cart/${id}`);
       dispatch(deleteCartItem(id));
     } catch (err) {
       console.error(`deleting cart: ${id} unsuccessful`, err);
@@ -82,10 +82,11 @@ export default function cartReducer(state = initialState, action) {
         isFetching: true,
       };
     case DELETE_CART_ITEM:
+      productsArr = state.cart.products.filter(
+        product => product.id !== action.id
+      );
       return {
-        cart: state.cart.products.filter(
-          product => product.id !== action.id
-        ),
+        cart: { ...state.cart, products: productsArr },
         isFetching: true,
       };
     default:
