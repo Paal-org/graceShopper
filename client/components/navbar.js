@@ -35,7 +35,7 @@ const Navbar = props => {
               Food
             </Link>
             <Link to="/account/cart">
-              {cart.products && cart.products.length ? (
+              {props.isFetching && cart.products.length ? (
                 <img className="nav-icon" src="/img/shopping-basket.png" />
               ) : (
                 <img
@@ -43,7 +43,7 @@ const Navbar = props => {
                   src="/img/shopping-basket-empty.png"
                 />
               )}{' '}
-              {cart.products && cart.products.length} Cart
+              {props.isFetching && cart.products.length} Cart
             </Link>
             <Link to="/products/search">
               <img className="nav-icon" src="/img/search.png" />Search
@@ -88,6 +88,7 @@ const mapState = state => {
     categories: state.categories,
     firstName: state.user.firstName,
     cart: state.cart.cart,
+    isFetching: state.cart.isFetching,
   };
 };
 
