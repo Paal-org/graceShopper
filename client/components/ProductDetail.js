@@ -1,12 +1,15 @@
+
 import React from 'react';
 import { connect } from 'react-redux';
 import AddToCartButton from './AddToCartButton';
 import AverateRating from './AverateRating';
 import ProductReview from './ProductReview';
 import { HashLink as Link } from 'react-router-hash-link';
+import { Link } from "react-router-dom";
+
 
 const ProductDetail = props => {
-  const { selectedProduct } = props;
+  const { selectedProduct, user } = props;
   const reviews = selectedProduct.reviews;
 
   return (
@@ -28,6 +31,16 @@ const ProductDetail = props => {
         </div>
         <br />
         <div>
+          {user.isAdmin && (
+            <Link to="/products/editproduct">
+              <button
+                type="button"
+                className="btn btn-primary edit-product"
+              >
+                Edit Product
+              </button>
+            </Link>
+          )}
           <h3>About this Product:</h3>
           <br />
           <div className="product-description">
@@ -64,6 +77,7 @@ const mapState = (state, ownProps) => {
   const findProduct = state.products.list.find(product => product.id === id);
   return {
     selectedProduct: findProduct,
+    user: state.user
   };
 };
 

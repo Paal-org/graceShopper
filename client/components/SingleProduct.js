@@ -1,10 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import AddToCartButton from "./AddToCartButton";
 import AverateRating from "./AverateRating";
 
 const SingleProduct = props => {
-  const { product } = props;
+  const { product, user } = props;
+  console.log();
   return (
     <div className="card">
       <Link to={`/products/${product.category.name}/${product.id}`}>
@@ -23,11 +25,18 @@ const SingleProduct = props => {
         <div>${product.price}</div>
         <div className="card-footer">
           <AddToCartButton product={product} />
-          {/* edit button if admin */}
+
+
         </div>
       </div>
     </div>
   );
 };
 
-export default SingleProduct;
+const mapState = state => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapState)(SingleProduct);

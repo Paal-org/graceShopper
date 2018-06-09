@@ -5,10 +5,8 @@ const ProductForm = props => {
     <div>
       <div className="product-form" />
       <section>
-        <span className="form-head">
-          <br />
-          Product Info
-        </span>
+        <br />
+        <h1>Product Info</h1>
         <div className="signin-container">
           <div className="buffer">
             <form onSubmit={props.handleSubmit}>
