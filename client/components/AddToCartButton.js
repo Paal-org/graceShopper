@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { postToCart } from '../store/reducers/cartReducer';
+import { postToCart, putToCart } from '../store/reducers/cartReducer';
 
 //*-----------------     Default state     -----------------*/
 const defaultState = {
@@ -21,16 +21,16 @@ class AddToCartButton extends Component {
 
   //*-----------------     Event Handlers     -----------------*/
 
-  handleChange() {
-    this.setState(prevState => ({
-      purchaseQuantity: prevState.purchaseQuantity + 1,
-    }));
+  handleChange(evt) {
+    this.setState({
+      [evt.target.name]: +evt.target.value,
+    });
   }
 
   addToCart(evt) {
     evt.preventDefault();
     const { product, cart } = this.props;
-    const ifProductExist = cart.cart.products.filter(
+    const ifProductExist = cart.products.filter(
       eachProduct => eachProduct.id === this.props.product.id
     );
     if (!ifProductExist.length) {
@@ -39,10 +39,15 @@ class AddToCartButton extends Component {
         product,
       });
       this.setState(defaultState);
+    } else {
+      const newProductQuantity =
+        ifProductExist[0].lineItem.purchaseQuantity +
+        this.state.purchaseQuantity;
+      this.props.putToCart({
+        purchaseQuantity: newProductQuantity,
+        product,
+      });
     }
-    // else {
-    //     dispatch update thunk
-    // }
   }
 
   //*-----------------     Render     -----------------*/
@@ -79,7 +84,7 @@ class AddToCartButton extends Component {
 //*-----------------     MAPPING TO STORE     -----------------*/
 const mapState = state => {
   return {
-    cart: state.cart,
+    cart: state.cart.cart,
   };
 };
 
@@ -87,6 +92,9 @@ const mapDispatch = dispatch => {
   return {
     postToCart: item => {
       dispatch(postToCart(item));
+    },
+    putToCart: item => {
+      dispatch(putToCart(item));
     },
   };
 };
