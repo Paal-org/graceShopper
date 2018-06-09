@@ -18,7 +18,7 @@ const ProductsList = props => {
           </button>
         </Link>
       )}
-      <Products products={products} />
+      <Products products={products}/>
     </div>
   );
 };

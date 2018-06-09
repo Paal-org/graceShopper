@@ -1,11 +1,12 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import AddToCartButton from './AddToCartButton';
-import AverateRating from './AverateRating';
-import ProductReview from './ProductReview';
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import AddToCartButton from "./AddToCartButton";
+import AverateRating from "./AverateRating";
+import ProductReview from "./ProductReview";
 
 const ProductDetail = props => {
-  const { selectedProduct } = props;
+  const { selectedProduct, user } = props;
   const reviews = selectedProduct.reviews;
 
   return (
@@ -24,6 +25,16 @@ const ProductDetail = props => {
         </div>
         <br />
         <div>
+          {user.isAdmin && (
+            <Link to="/products/editproduct">
+              <button
+                type="button"
+                className="btn btn-primary edit-product"
+              >
+                Edit Product
+              </button>
+            </Link>
+          )}
           <h3>About this Product:</h3>
           <br />
           <div className="product-description">
@@ -37,8 +48,8 @@ const ProductDetail = props => {
         <div>
           <h3>In stock: </h3>
           {selectedProduct.inventoryQuantity
-            ? 'Yes get some before they are gone'
-            : 'Sorry! we are out of stock'}
+            ? "Yes get some before they are gone"
+            : "Sorry! we are out of stock"}
         </div>
         <div>
           <AddToCartButton product={selectedProduct} />
@@ -60,6 +71,7 @@ const mapState = (state, ownProps) => {
   const findProduct = state.products.list.find(product => product.id === id);
   return {
     selectedProduct: findProduct,
+    user: state.user
   };
 };
 
