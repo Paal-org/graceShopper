@@ -27,9 +27,9 @@ const Product = db.define('product', {
     validate: {
       notEmpty: true,
     },
-    // set(valueToBeSet) {
-    //   this.setDataValue('price', valueToBeSet / 100);
-    // },
+    set(valueToBeSet) {
+      this.setDataValue('price', valueToBeSet / 100);
+    },
   },
   inventoryQuantity: {
     type: Sequelize.INTEGER,

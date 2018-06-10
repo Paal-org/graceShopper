@@ -38,10 +38,10 @@ class CartItem extends Component {
       <tr>
         <td data-th="Product">
           <div className="row">
-            <div className="col-sm-2 hidden-xs">
+            <div className="col-sm-4 hidden-xs">
               <img src={product.imageUrl} alt="..." className="cart-image" />
             </div>
-            <div className="col-sm-10">
+            <div className="col-sm-8">
               <h4 className="nomargin">
                 <Link to={`/products/${product.category.name}/${product.id}`}>
                   {product.name}
@@ -50,9 +50,9 @@ class CartItem extends Component {
             </div>
           </div>
         </td>
-        <td data-th="Price">${product.price}</td>
-        <form onSubmit={this.updateToCart}>
-          <td data-th="Quantity">
+        <td data-th="Price">$ {product.price}</td>
+        <td data-th="Quantity">
+          <form onSubmit={this.updateToCart}>
             <input
               type="number"
               className="form-control text-center"
@@ -61,32 +61,27 @@ class CartItem extends Component {
               onChange={this.handleChange}
               min="1"
             />
-          </td>
-          <td data-th="Subtotal" className="text-center">
-            {this.state.purchaseQuantity * product.price}
-          </td>
-          <td className="actions" data-th="">
             <button
               className="btn btn-info btn-sm"
               disabled={!product.inventoryQuantity}
               type="submit"
             >
-              <i className="fa fa-refresh" />
+              <i className="fas fa-pencil-alt" />
             </button>
-            <DeleteFromCartButton product={product} />
-          </td>
-        </form>
+          </form>
+        </td>
+        <td data-th="Subtotal" className="text-center">
+          $ {this.state.purchaseQuantity * product.price}
+        </td>
+        <td className="actions" data-th="">
+          <DeleteFromCartButton product={product} />
+        </td>
       </tr>
     );
   }
 }
 
 //*-----------------     MAPPING TO STORE     -----------------*/
-// const mapState = state => {
-//   return {
-//     cart: state.cart.cart,
-//   };
-// };
 
 const mapDispatch = dispatch => {
   return {
