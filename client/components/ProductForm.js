@@ -1,9 +1,9 @@
 import React from "react";
-import { connect } from 'react-redux'
-
+import { connect } from "react-redux";
 
 const ProductForm = props => {
-  const { handleSubmit, handleChange, categories } = props
+  const { handleSubmit, handleChange, categories } = props;
+  console.log("EDIT", props);
   return (
     <div>
       <div className="product-form" />
@@ -20,16 +20,18 @@ const ProductForm = props => {
                   type="text"
                   onChange={handleChange}
                   className="form-control"
+                  value={props.name}
                   required
                 />
               </div>
               <div className="form-group">
                 <label>Image Url</label>
                 <input
-                  name="image url"
+                  name="imageUrl"
                   type="text"
                   onChange={handleChange}
                   className="form-control"
+                  value={props.imageUrl}
                   required
                 />
               </div>
@@ -40,6 +42,7 @@ const ProductForm = props => {
                   type="text"
                   onChange={handleChange}
                   className="form-control"
+                  value={props.description}
                   required
                 />
               </div>
@@ -50,6 +53,7 @@ const ProductForm = props => {
                   type="text"
                   onChange={handleChange}
                   className="form-control"
+                  value={props.price}
                   required
                 />
               </div>
@@ -59,6 +63,7 @@ const ProductForm = props => {
                   name="inventoryQuantity"
                   type="text"
                   onChange={handleChange}
+                  value={props.inventoryQuantity}
                   className="form-control"
                   required
                 />
@@ -67,21 +72,23 @@ const ProductForm = props => {
                 Category
                 <select
                   name="categoryId"
+                  value={props.categoryId}
                   className="form-control"
                   onChange={handleChange}
                 >
                   <option value="Select Category" className="form-control">
                     Select Category
                   </option>
-                  {categories && categories.list.map(category => (
-                    <option
-                      value={category.id}
-                      key={category.id}
-                      className="form-control"
-                    >
-                      {category.name}
-                    </option>
-                  ))}
+                  {categories &&
+                    categories.list.map(category => (
+                      <option
+                        value={category.id}
+                        key={category.id}
+                        className="form-control"
+                      >
+                        {category.name}
+                      </option>
+                    ))}
                 </select>
               </div>
               <button type="submit" className="product-form-btn">
@@ -98,7 +105,7 @@ const ProductForm = props => {
 const mapState = state => {
   return {
     categories: state.categories
-  }
-}
+  };
+};
 
 export default connect(mapState)(ProductForm);
