@@ -1,5 +1,5 @@
-import React from "react";
-import OrderLineItem from "./OrderLineItem";
+import React from 'react';
+import OrderLineItem from './OrderLineItem';
 
 const Order = props => {
   const order = props.order;
@@ -8,9 +8,10 @@ const Order = props => {
     <div>
       <h2>Order #{order.id}</h2>
       <div className="line-item">
-        {products.map(product => (
-          <OrderLineItem key={product.id} product={product} />
-        ))}
+        {products &&
+          products.map(product => (
+            <OrderLineItem key={product.id} product={product} />
+          ))}
       </div>
     </div>
   );
