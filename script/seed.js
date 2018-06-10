@@ -227,10 +227,12 @@ async function seed() {
     Order.create({
       status: 'complete',
       userId: '1',
+      shippingStatus: 'pending',
     }),
     Order.create({
       status: 'complete',
       userId: '1',
+      shippingStatus: 'shipped',
     }),
     Order.create({
       status: 'cart',
@@ -239,6 +241,7 @@ async function seed() {
     Order.create({
       status: 'complete',
       userId: '2',
+      shippingStatus: 'pending',
     }),
   ]);
 
@@ -247,34 +250,42 @@ async function seed() {
       orderId: orders[0].id,
       productId: 3,
       purchaseQuantity: 3,
+      purchasePrice: 795,
     }),
     LineItem.create({
       orderId: orders[0].id,
       productId: 1,
+      purchasePrice: 795,
     }),
     LineItem.create({
       orderId: orders[0].id,
       productId: 2,
+      purchasePrice: 795,
     }),
     LineItem.create({
       orderId: orders[1].id,
       productId: 3,
+      purchasePrice: 795,
     }),
     LineItem.create({
       orderId: orders[1].id,
       productId: 2,
+      purchasePrice: 795,
     }),
     LineItem.create({
       orderId: orders[3].id,
       productId: 7,
+      purchasePrice: 795,
     }),
     LineItem.create({
       orderId: orders[4].id,
       productId: 6,
+      purchasePrice: 795,
     }),
     LineItem.create({
       orderId: orders[2].id,
       productId: 6,
+      purchasePrice: 795,
     }),
   ]);
   db.close();
