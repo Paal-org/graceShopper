@@ -16,9 +16,10 @@ class EditProduct extends Component {
   }
 }
 
-const mapState = state => {
+const mapState = (state, ownProps) => {
+  
   return {
-    products: state.products
+    product: state.products.list.filter(product => product.category.id === id)
   }
 }
 

@@ -1,10 +1,9 @@
 import React from "react";
+import { connect } from 'react-redux'
 
 
 const ProductForm = props => {
   const { handleSubmit, handleChange, categories } = props
-  console.log('PROPS', props)
-  console.log('FETCHING', props.categories)
   return (
     <div>
       <div className="product-form" />
@@ -96,6 +95,10 @@ const ProductForm = props => {
   );
 };
 
+const mapState = state => {
+  return {
+    categories: state.categories
+  }
+}
 
-
-export default ProductForm;
+export default connect(mapState)(ProductForm);

@@ -1,9 +1,10 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import AddToCartButton from "./AddToCartButton";
-import AverateRating from "./AverateRating";
-import ProductReview from "./ProductReview";
+import React from 'react';
+import { connect } from 'react-redux';
+import AddToCartButton from './AddToCartButton';
+import AverateRating from './AverateRating';
+import ProductReview from './ProductReview';
+import { HashLink } from 'react-router-hash-link';
+import { Link } from 'react-router-dom';
 
 const ProductDetail = props => {
   const { selectedProduct, user } = props;
@@ -18,6 +19,9 @@ const ProductDetail = props => {
         <br />
         <div>
           <AverateRating product={selectedProduct} />
+        </div>
+        <div>
+          <HashLink to={`${selectedProduct.id}/#reviewList`}>Reviews</HashLink>
         </div>
         <br />
         <div>
@@ -46,17 +50,17 @@ const ProductDetail = props => {
         <div>Price: {selectedProduct.price}</div>
         <br />
         <div>
-          <h3>In stock: </h3>
+          <h3>In stock: {selectedProduct.inventoryQuantity}</h3>
           {selectedProduct.inventoryQuantity
-            ? "Yes get some before they are gone"
-            : "Sorry! we are out of stock"}
+            ? 'Get some before they are gone'
+            : 'Sorry! we are out of stock'}
         </div>
         <div>
           <AddToCartButton product={selectedProduct} />
         </div>
         <br />
       </div>
-      <div>
+      <div id="reviewList">
         <h3>Customer Reviews:</h3>
         {reviews.map(review => (
           <ProductReview key={review.id} review={review} />
@@ -71,7 +75,7 @@ const mapState = (state, ownProps) => {
   const findProduct = state.products.list.find(product => product.id === id);
   return {
     selectedProduct: findProduct,
-    user: state.user
+    user: state.user,
   };
 };
 

@@ -30,23 +30,19 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
 
   const strategy = new GoogleStrategy(
     googleConfig,
-    (token, refreshToken, profile, done) => {
+    async (token, refreshToken, profile, done) => {
       // console.log("PROFILE", profile)
       const googleId = profile.id;
       const email = profile.emails[0].value;
       const firstName = profile.name.givenName;
       const lastName = profile.name.familyName;
 
-      User.find({ where: { googleId } })
-        .then(
-          foundUser =>
-            foundUser
-              ? done(null, foundUser)
-              : User.create({ firstName, lastName, email, googleId }).then(
-                  createdUser => done(null, createdUser)
-                )
-        )
-        .catch(done);
+      const foundUser = await User.find({ where: { googleId } });
+      const createdUser = foundUser
+        ? done(null, foundUser)
+        : await User.create({ firstName, lastName, email, googleId });
+      await createdUser.createCart();
+      done(null, createdUser).catch(done);
     }
   );
 

@@ -72,6 +72,11 @@ form div {
   width: auto;
 }
 
+.cart-image{
+  max-height: 250px;
+  width: auto;
+}
+
 .line-item img {
   max-height: 100px;
   width: auto;
@@ -89,4 +94,13 @@ form div {
 .product-description {
   font-family: "Abel";
   font-size: 18px;
+}
+
+.warning {
+  /* padding: 0 0.5em; */
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  background-color: #EAB543;
+  color: white;
+  /* margin-left: 1em; */
 }

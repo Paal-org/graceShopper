@@ -52,7 +52,7 @@ class Routes extends Component {
             <Route path="/account" component={AccountDetails} />
             {isAdmin && (
             <Switch>
-              <Route exact path="" component={EditProduct} />
+              <Route exact path="/products/:id/edit" component={EditProduct} />
               <Route exact path="/products/addproduct" component={AddProduct} />
             </Switch>
             )}
