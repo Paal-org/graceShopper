@@ -18,7 +18,6 @@ router.post('/login', (req, res, next) => {
     .catch(next);
 });
 
-
 router.post('/signup', async (req, res, next) => {
   try {
     const user = await User.create(req.body);
@@ -44,3 +43,4 @@ router.get('/me', (req, res) => {
 });
 
 router.use('/google', require('./google'));
+router.use('/facebook', require('./facebook'));

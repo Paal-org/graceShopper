@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { auth } from '../store';
+import FacebookLogin from 'react-facebook-login';
+import { fcClientCallback } from '../../secrets';
 
 /**
  * COMPONENT
@@ -48,6 +50,7 @@ const AuthForm = props => {
       <a href="/auth/google">
         <img src="/img/googleBtn.png" />
       </a>
+  */}
     </div>
   );
 };
