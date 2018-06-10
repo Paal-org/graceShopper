@@ -26,7 +26,7 @@ class DeleteFromCartButton extends Component {
           type="button"
           onClick={this.deleteCartItem}
         >
-          <i className="fa fa-trash-o" />
+          <i className="fas fa-trash-alt" />
         </button>
       </div>
     );
