@@ -1,8 +1,8 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import AddToCartButton from "./AddToCartButton";
-import AverateRating from "./AverateRating";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import AddToCartButton from './AddToCartButton';
+import AverageRating from './AverageRating';
 
 const SingleProduct = props => {
   const { product, user } = props;
@@ -20,13 +20,11 @@ const SingleProduct = props => {
         </div>
 
         <div>
-          <AverateRating product={product} />
+          <AverageRating product={product} />
         </div>
         <div>${product.price}</div>
         <div className="card-footer">
           <AddToCartButton product={product} />
-
-
         </div>
       </div>
     </div>
@@ -35,7 +33,7 @@ const SingleProduct = props => {
 
 const mapState = state => {
   return {
-    user: state.user
+    user: state.user,
   };
 };
 
