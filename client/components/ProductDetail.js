@@ -39,7 +39,7 @@ const ProductDetail = props => {
           <br />
           <div>
             {user.isAdmin && (
-              <Link to="/products/editproduct">
+              <Link to={`/products/${selectedProduct.id}/edit`}>
                 <button type="button" className="btn btn-primary edit-product">
                   Edit Product
                 </button>

@@ -1,6 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 
 const ProductForm = props => {
+  const { handleSubmit, handleChange, categories } = props;
+  console.log("EDIT", props);
   return (
     <div>
       <div className="product-form" />
@@ -9,24 +12,26 @@ const ProductForm = props => {
         <h1>Product Info</h1>
         <div className="signin-container">
           <div className="buffer">
-            <form onSubmit={props.handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label>Product Name</label>
                 <input
                   name="name"
                   type="text"
-                  onChange={props.handleChange}
+                  onChange={handleChange}
                   className="form-control"
+                  value={props.name}
                   required
                 />
               </div>
               <div className="form-group">
                 <label>Image Url</label>
                 <input
-                  name="image url"
+                  name="imageUrl"
                   type="text"
-                  onChange={props.handleChange}
+                  onChange={handleChange}
                   className="form-control"
+                  value={props.imageUrl}
                   required
                 />
               </div>
@@ -35,8 +40,9 @@ const ProductForm = props => {
                 <input
                   name="description"
                   type="text"
-                  onChange={props.handleChange}
+                  onChange={handleChange}
                   className="form-control"
+                  value={props.description}
                   required
                 />
               </div>
@@ -45,8 +51,9 @@ const ProductForm = props => {
                 <input
                   name="price"
                   type="text"
-                  onChange={props.handleChange}
+                  onChange={handleChange}
                   className="form-control"
+                  value={props.price}
                   required
                 />
               </div>
@@ -55,7 +62,8 @@ const ProductForm = props => {
                 <input
                   name="inventoryQuantity"
                   type="text"
-                  onChange={props.handleChange}
+                  onChange={handleChange}
+                  value={props.inventoryQuantity}
                   className="form-control"
                   required
                 />
@@ -64,21 +72,23 @@ const ProductForm = props => {
                 Category
                 <select
                   name="categoryId"
+                  value={props.categoryId}
                   className="form-control"
-                  onChange={props.handleChange}
+                  onChange={handleChange}
                 >
                   <option value="Select Category" className="form-control">
                     Select Category
                   </option>
-                  {props.categories.list.map(category => (
-                    <option
-                      value={category.id}
-                      key={category.id}
-                      className="form-control"
-                    >
-                      {category.name}
-                    </option>
-                  ))}
+                  {categories &&
+                    categories.list.map(category => (
+                      <option
+                        value={category.id}
+                        key={category.id}
+                        className="form-control"
+                      >
+                        {category.name}
+                      </option>
+                    ))}
                 </select>
               </div>
               <button type="submit" className="product-form-btn">
@@ -92,4 +102,10 @@ const ProductForm = props => {
   );
 };
 
-export default ProductForm;
+const mapState = state => {
+  return {
+    categories: state.categories
+  };
+};
+
+export default connect(mapState)(ProductForm);
