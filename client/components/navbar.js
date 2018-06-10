@@ -13,13 +13,47 @@ const Navbar = props => {
   return (
     <div>
       <div>
-        <div>
-          <Link to="/home">
+        <div className="row">
+          <Link to="/home" className="col-8">
             <h1>Provisions, Alcohol and Libations</h1>
           </Link>
-        </div>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          {/* ----------------------LOGIN-SIGNUP-LOGOUT----------------------- */}
           <div>
+            {isLoggedIn ? (
+              <div>
+                {/* The navbar will show these links after you log in */}
+                <button type="button" className="btn navbar-light bg-light">
+                  <Link to="/account" className="col-2">
+                    <img className="nav-icon" src="/img/godzilla.png" />Welcome{' '}
+                    {firstName}
+                  </Link>
+                </button>
+                <button type="button" className="btn navbar-light bg-light">
+                  <a href="#" onClick={handleClick} className="col-2">
+                    <img className="nav-icon" src="/img/exit.png" />
+                    Logout
+                  </a>
+                </button>
+              </div>
+            ) : (
+              <div>
+                {/* The navbar will show these links before you log in */}
+                <button type="button" className="btn navbar-light bg-light">
+                  <Link to="/signup" className="col-2">
+                    <img className="nav-icon" src="/img/edit.png" />Sign Up
+                  </Link>
+                </button>
+                <button type="button" className="btn navbar-light bg-light">
+                  <Link to="/login" className="col-2">
+                    <img className="nav-icon" src="/img/enter.png" />Login
+                  </Link>
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light row">
+          <div className="col-10">
             {/* ------------------------HOME----------------------- */}
             <button type="button" className="btn navbar-light bg-light">
               <Link to="/home">
@@ -57,7 +91,15 @@ const Navbar = props => {
                   })}
               </div>
             </div>
-            {/* ------------------------CART----------------------- */}
+            {/* ------------------------SEARCH----------------------- */}
+            <button type="button" className="btn navbar-light bg-light">
+              <Link to="/products/search">
+                <img className="nav-icon" src="/img/search.png" />Search
+              </Link>
+            </button>
+          </div>
+          {/* ------------------------CART----------------------- */}
+          <div className="col-2">
             <button type="button" className="btn navbar-light bg-light">
               <Link to="/account/cart">
                 {cart.products && cart.products.length ? (
@@ -71,45 +113,8 @@ const Navbar = props => {
                 {cart.products && cart.products.length} Cart
               </Link>
             </button>
-            {/* ------------------------SEARCH----------------------- */}
-            <button type="button" className="btn navbar-light bg-light">
-              <Link to="/products/search">
-                <img className="nav-icon" src="/img/search.png" />Search
-              </Link>
-            </button>
-            {/* ----------------------LOGIN-SIGNUP-LOGOUT----------------------- */}
-            {isLoggedIn ? (
-              <div>
-                {/* The navbar will show these links after you log in */}
-                <button type="button" className="btn navbar-light bg-light">
-                  <Link to="/account">
-                    <img className="nav-icon" src="/img/godzilla.png" />Welcome{' '}
-                    {firstName}
-                  </Link>
-                  <a href="#" onClick={handleClick}>
-                    <img className="nav-icon" src="/img/exit.png" />
-                    Logout
-                  </a>
-                </button>
-              </div>
-            ) : (
-              <div>
-                {/* The navbar will show these links before you log in */}
-                <button type="button" className="btn navbar-light bg-light">
-                  <Link to="/login">
-                    <img className="nav-icon" src="/img/enter.png" />Login
-                  </Link>
-                </button>
-                <button type="button" className="btn navbar-light bg-light">
-                  <Link to="/signup">
-                    <img className="nav-icon" src="/img/edit.png" />Sign Up
-                  </Link>
-                </button>
-              </div>
-            )}
           </div>
         </nav>
-        <hr />
       </div>
     </div>
   );
@@ -135,9 +140,6 @@ const mapDispatch = dispatch => {
       dispatch(clearCart());
       dispatch(clearAccount());
     },
-    // categories: () => {
-    //   dispatch(fetchCategories());
-    // },
   };
 };
 
