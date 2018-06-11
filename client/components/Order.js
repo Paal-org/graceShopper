@@ -1,9 +1,14 @@
 import React from 'react';
 import OrderLineItem from './OrderLineItem';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const Order = props => {
-  const order = props.order;
-  const products = props.order.products;
+  const order = props.order || {};
+  const user = props.user || {};
+  console.log('props', props);
+  console.log('user', user);
+  const products = props.order.products || [];
   const subtotalArr =
     products &&
     products.map(product => {
@@ -11,6 +16,9 @@ const Order = props => {
     });
   const totalPrice =
     products && subtotalArr.reduce((total, num) => total + num, 0);
+  if (!props.isFetching) {
+    return <div>Loading..</div>;
+  }
   return (
     <div>
       <h3>Order #{order.id}</h3>
@@ -38,7 +46,7 @@ const Order = props => {
             </tr>
             <tr>
               <td data-th="Product">
-                <strong>Order Status: {order.shippingStatus}</strong>
+                <strong>Shipping Status: {order.shippingStatus}</strong>
               </td>
               <td colSpan="2" className="hidden-xs" />
               <td className="hidden-xs text-center">
@@ -48,8 +56,18 @@ const Order = props => {
           </tfoot>
         </table>
       </div>
+      {user.isAdmin && <Link to="/orders">Back to All Pending Orders</Link>}
     </div>
   );
 };
+//if admin, make link to go back to all pending orders
 
-export default Order;
+const mapState = (state, ownProps) => {
+  console.log('ownProps', ownProps);
+  return {
+    user: state.user,
+    isFetching: state.pendingOrders.isFetching && state.products.isFetching,
+  };
+};
+
+export default connect(mapState)(Order);
