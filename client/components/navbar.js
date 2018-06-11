@@ -1,13 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { logout } from '../store';
-import { fetchCategories } from '../store/reducers/categoryReducer';
-import { clearCart } from '../store/reducers/cartReducer';
-import { clearAccount } from '../store/reducers/accountReducer';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { logout } from "../store";
+import { clearCart } from "../store/reducers/cartReducer";
+import { clearAccount } from "../store/reducers/accountReducer";
 
-const Navbar = props => {
+export const Navbar = props => {
   const { handleClick, isLoggedIn, categories, firstName, cart } = props;
   return (
     <div>
@@ -23,8 +22,8 @@ const Navbar = props => {
                 {/* The navbar will show these links after you log in */}
                 <button type="button" className="btn navbar-light bg-light">
                   <Link to="/account" className="col-2">
-                    <img className="nav-icon" src="/img/godzilla.png" />Welcome{' '}
-                    {firstName}
+                    <img className="nav-icon" src="/img/godzilla.png" />
+                    <span id="welcome">Welcome {firstName}</span>
                   </Link>
                 </button>
                 <button type="button" className="btn navbar-light bg-light">
@@ -82,7 +81,7 @@ const Navbar = props => {
                     return (
                       <div key={category.id} className="dropdown-item">
                         <img className="nav-icon" src={category.imageUrl} />
-                        <a href={'/products/' + category.name}>
+                        <a href={"/products/" + category.name}>
                           {category.name}
                         </a>
                       </div>
@@ -108,7 +107,7 @@ const Navbar = props => {
                     className="nav-icon"
                     src="/img/shopping-basket-empty.png"
                   />
-                )}{' '}
+                )}{" "}
                 {cart.products && cart.products.length} Cart
               </Link>
             </button>
@@ -128,7 +127,7 @@ const mapState = state => {
     categories: state.categories,
     firstName: state.user.firstName,
     cart: state.cart.cart,
-    isFetching: state.cart.isFetching,
+    isFetching: state.cart.isFetching
   };
 };
 
@@ -138,7 +137,7 @@ const mapDispatch = dispatch => {
       dispatch(logout());
       dispatch(clearCart());
       dispatch(clearAccount());
-    },
+    }
   };
 };
 
@@ -152,5 +151,5 @@ export default connect(
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired
 };
