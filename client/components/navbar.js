@@ -1,25 +1,57 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { logout } from '../store';
-import { fetchCategories } from '../store/reducers/categoryReducer';
-import { clearCart } from '../store/reducers/cartReducer';
-import { clearAccount } from '../store/reducers/accountReducer';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { logout } from "../store";
+import { clearCart } from "../store/reducers/cartReducer";
+import { clearAccount } from "../store/reducers/accountReducer";
 
-const Navbar = props => {
+export const Navbar = props => {
   const { handleClick, isLoggedIn, categories, firstName, cart } = props;
-  console.log(categories);
   return (
     <div>
       <div>
-        <div>
-          <Link to="/home">
+        <div className="row">
+          <Link to="/home" className="col-8">
             <h1>Provisions, Alcohol and Libations</h1>
           </Link>
-        </div>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          {/* ----------------------LOGIN-SIGNUP-LOGOUT----------------------- */}
           <div>
+            {isLoggedIn ? (
+              <div>
+                {/* The navbar will show these links after you log in */}
+                <button type="button" className="btn navbar-light bg-light">
+                  <Link to="/account" className="col-2">
+                    <img className="nav-icon" src="/img/godzilla.png" />
+                    <span id="welcome">Welcome {firstName}</span>
+                  </Link>
+                </button>
+                <button type="button" className="btn navbar-light bg-light">
+                  <a href="#" onClick={handleClick} className="col-2">
+                    <img className="nav-icon" src="/img/exit.png" />
+                    Logout
+                  </a>
+                </button>
+              </div>
+            ) : (
+              <div>
+                {/* The navbar will show these links before you log in */}
+                <button type="button" className="btn navbar-light bg-light">
+                  <Link to="/signup" className="col-2">
+                    <img className="nav-icon" src="/img/edit.png" />Sign Up
+                  </Link>
+                </button>
+                <button type="button" className="btn navbar-light bg-light">
+                  <Link to="/login" className="col-2">
+                    <img className="nav-icon" src="/img/enter.png" />Login
+                  </Link>
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light row">
+          <div className="col-10">
             {/* ------------------------HOME----------------------- */}
             <button type="button" className="btn navbar-light bg-light">
               <Link to="/home">
@@ -49,7 +81,7 @@ const Navbar = props => {
                     return (
                       <div key={category.id} className="dropdown-item">
                         <img className="nav-icon" src={category.imageUrl} />
-                        <a href={'/products/' + category.name}>
+                        <a href={"/products/" + category.name}>
                           {category.name}
                         </a>
                       </div>
@@ -57,7 +89,15 @@ const Navbar = props => {
                   })}
               </div>
             </div>
-            {/* ------------------------CART----------------------- */}
+            {/* ------------------------SEARCH----------------------- */}
+            <button type="button" className="btn navbar-light bg-light">
+              <Link to="/products/search">
+                <img className="nav-icon" src="/img/search.png" />Search
+              </Link>
+            </button>
+          </div>
+          {/* ------------------------CART----------------------- */}
+          <div className="col-2">
             <button type="button" className="btn navbar-light bg-light">
               <Link to="/account/cart">
                 {cart.products && cart.products.length ? (
@@ -67,49 +107,12 @@ const Navbar = props => {
                     className="nav-icon"
                     src="/img/shopping-basket-empty.png"
                   />
-                )}{' '}
+                )}{" "}
                 {cart.products && cart.products.length} Cart
               </Link>
             </button>
-            {/* ------------------------SEARCH----------------------- */}
-            <button type="button" className="btn navbar-light bg-light">
-              <Link to="/products/search">
-                <img className="nav-icon" src="/img/search.png" />Search
-              </Link>
-            </button>
-            {/* ----------------------LOGIN-SIGNUP-LOGOUT----------------------- */}
-            {isLoggedIn ? (
-              <div>
-                {/* The navbar will show these links after you log in */}
-                <button type="button" className="btn navbar-light bg-light">
-                  <Link to="/account">
-                    <img className="nav-icon" src="/img/godzilla.png" />Welcome{' '}
-                    {firstName}
-                  </Link>
-                  <a href="#" onClick={handleClick}>
-                    <img className="nav-icon" src="/img/exit.png" />
-                    Logout
-                  </a>
-                </button>
-              </div>
-            ) : (
-              <div>
-                {/* The navbar will show these links before you log in */}
-                <button type="button" className="btn navbar-light bg-light">
-                  <Link to="/login">
-                    <img className="nav-icon" src="/img/enter.png" />Login
-                  </Link>
-                </button>
-                <button type="button" className="btn navbar-light bg-light">
-                  <Link to="/signup">
-                    <img className="nav-icon" src="/img/edit.png" />Sign Up
-                  </Link>
-                </button>
-              </div>
-            )}
           </div>
         </nav>
-        <hr />
       </div>
     </div>
   );
@@ -124,7 +127,7 @@ const mapState = state => {
     categories: state.categories,
     firstName: state.user.firstName,
     cart: state.cart.cart,
-    isFetching: state.cart.isFetching,
+    isFetching: state.cart.isFetching
   };
 };
 
@@ -134,10 +137,7 @@ const mapDispatch = dispatch => {
       dispatch(logout());
       dispatch(clearCart());
       dispatch(clearAccount());
-    },
-    // categories: () => {
-    //   dispatch(fetchCategories());
-    // },
+    }
   };
 };
 
@@ -151,5 +151,5 @@ export default connect(
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired
 };

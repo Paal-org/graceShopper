@@ -1,10 +1,13 @@
 import axios from 'axios';
+import { ADD_ORDER } from './accountReducer';
 
 const GET_CART = 'GET_CART';
 const ADD_TO_CART = 'ADD_TO_CART';
 const CLEAR_CART = 'CLEAR_CART';
 const UPDATE_CART = 'UPDATE_CART';
 const DELETE_CART_ITEM = 'DELETE_CART_ITEM';
+//setCart
+//const SET_CART = 'SET_CART';
 
 const getCart = cart => ({ type: GET_CART, cart });
 const addToCart = item => {
@@ -19,6 +22,13 @@ const updateCart = item => {
 const deleteCartItem = id => {
   return { type: DELETE_CART_ITEM, id };
 };
+
+// export const setCart = cart => {
+//   return {
+//     type: SET_CART,
+//     cart,
+//   };
+// };
 
 const initialState = {
   cart: {},
@@ -63,6 +73,10 @@ export default function cartReducer(state = initialState, action) {
     case GET_CART: {
       return { cart: action.cart, isFetching: true };
     }
+    // case SET_CART:
+    //   return { cart: action.cart, isFetching: true };
+    case ADD_ORDER:
+      return { cart: action.order.newCart, isFetching: true };
     case ADD_TO_CART:
       return {
         cart: {

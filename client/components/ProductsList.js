@@ -1,7 +1,7 @@
-import React from "react";
-import { connect } from "react-redux";
-import Products from "./Products";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { connect } from 'react-redux';
+import Products from './Products';
+import { Link } from 'react-router-dom';
 
 const ProductsList = props => {
   const { products, category, user } = props;
@@ -10,7 +10,7 @@ const ProductsList = props => {
   // const header = urlPath.slice(10).toUpperCase()
   return (
     <div>
-      {category ? <h1>{category}</h1> : <h1>ALL PRODUCTS</h1>}
+      <div>{category ? <h1>{category}</h1> : <h1>ALL PRODUCTS</h1>}</div>
       {user.isAdmin && (
         <Link to="/products/addproduct">
           <button type="button" className="add-product">
@@ -18,7 +18,7 @@ const ProductsList = props => {
           </button>
         </Link>
       )}
-      <Products products={products}/>
+      <Products products={products} />
     </div>
   );
 };
@@ -37,7 +37,7 @@ const mapState = (state, ownProps) => {
   return {
     user: state.user,
     products: productList,
-    category: header.toUpperCase()
+    category: header.toUpperCase(),
   };
 };
 

@@ -67,11 +67,31 @@ form div {
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
   background-color:#6D214F;
 }
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px rgba(88, 177, 159, 0.24);
+  transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0  rgba(88, 177, 159, 0.2);
+}
+
+
+
 
 .card-img-top {
   max-height: 150px;
   width: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
 }
+.single-card { transition: all .2s ease-in-out; }
+.single-card:hover { transform: scale(1.2); }
 
 .cart-image{
   max-height: 100px;
@@ -81,11 +101,13 @@ form div {
 .product-detail-image{
   max-height: 500px;
   width: auto;
+
 }
 
 .line-item img {
   max-height: 100px;
   width: auto;
+
 }
 
 .order-list:nth-child(2) {

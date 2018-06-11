@@ -10,6 +10,7 @@ const AccountDetails = props => {
   return (
     <div>
       <AccountStatic user={user} />
+      <br />
       <OrderList orders={orders} />
     </div>
   );
