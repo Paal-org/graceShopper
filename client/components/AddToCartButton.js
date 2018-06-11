@@ -58,33 +58,27 @@ class AddToCartButton extends Component {
         ? `Only ${product.inventoryQuantity} left in stock`
         : '';
     return (
-      <form onSubmit={this.addToCart}>
-        <div>
-          <div className="form-inline">
-            {warningMessage && (
-              <span className="warning">{warningMessage}</span>
-            )}
-            <div className="form-group mx-sm-1 mb-2">
-              <input
-                className="form-control form-control-sm"
-                type="number"
-                name="purchaseQuantity"
-                min="1"
-                value={this.state.purchaseQuantity}
-                onChange={this.handleChange}
-              />
-              <button
-                className="btn btn-primary btn-sm addToCartButton"
-                disabled={
-                  !product.inventoryQuantity ||
-                  this.state.purchaseQuantity > product.inventoryQuantity
-                }
-                type="submit"
-              >
-                Add to Cart
-              </button>
-            </div>
-          </div>
+      <form onSubmit={this.addToCart} className="form-inline">
+        {warningMessage && <span className="warning">{warningMessage}</span>}
+        <div className="form-group mx-sm-3 mb-2">
+          <input
+            className="form-control form-control-sm"
+            type="number"
+            name="purchaseQuantity"
+            min="1"
+            value={this.state.purchaseQuantity}
+            onChange={this.handleChange}
+          />
+          <button
+            className="btn btn-primary btn-sm addToCartButton"
+            disabled={
+              !product.inventoryQuantity ||
+              this.state.purchaseQuantity > product.inventoryQuantity
+            }
+            type="submit"
+          >
+            Add to Cart
+          </button>
         </div>
       </form>
     );

@@ -17,6 +17,7 @@ class Cart extends Component {
   render() {
     const products = this.props.cart.products;
     const isFetching = this.props.isFetching;
+    console.log(this.props);
 
     const subtotalArr =
       products &&
@@ -28,6 +29,18 @@ class Cart extends Component {
 
     if (!isFetching) {
       return <div>Loading...</div>;
+    }
+    if (!products.length) {
+      return (
+        <div>
+          <br />
+          <div>Your Shopping Cart is empty</div>
+          <br />
+          <a href="/products" className="btn btn-warning">
+            <i className="fa fa-angle-left" /> Continue Shopping
+          </a>
+        </div>
+      );
     }
     return (
       <div className="table table-hover table-condensed">

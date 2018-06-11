@@ -8,24 +8,23 @@ const SingleProduct = props => {
   const { product, user } = props;
   console.log();
   return (
-    <div className="card">
+    <div className="card p-2 m-3 " style={{ width: '18rem' }}>
       <Link to={`/products/${product.category.name}/${product.id}`}>
-        <img className="card-img-top" src={product.imageUrl} />
+        <img
+          className="card-img-top mt-4 single-card"
+          src={product.imageUrl}
+          alt="Card image cap"
+        />
       </Link>
-      <div>
-        <div className="card-title">
+      <div className="card-body">
+        <div className="card-title center">
           <Link to={`/products/${product.category.name}/${product.id}`}>
             {product.name}
           </Link>
         </div>
-
-        <div>
-          <AverageRating product={product} />
-        </div>
+        <AverageRating product={product} />
         <div>${product.price}</div>
-        <div className="card-footer">
-          <AddToCartButton product={product} />
-        </div>
+        <AddToCartButton product={product} />
       </div>
     </div>
   );

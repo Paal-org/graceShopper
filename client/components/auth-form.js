@@ -50,7 +50,6 @@ const AuthForm = props => {
       <a href="/auth/google">
         <img src="/img/googleBtn.png" />
       </a>
-  */}
     </div>
   );
 };

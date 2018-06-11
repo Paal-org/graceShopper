@@ -26,6 +26,7 @@ class Routes extends Component {
   }
   render() {
     const { isLoggedIn, isFetching, isAdmin } = this.props;
+
     if (!isFetching) {
       return <div>Loading...</div>;
     }

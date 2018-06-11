@@ -37,9 +37,13 @@ class CartItem extends Component {
     return (
       <tr>
         <td data-th="Product">
-          <div className="row">
+          <div className="row ">
             <div className="col-sm-4 hidden-xs">
-              <img src={product.imageUrl} alt="..." className="cart-image" />
+              <img
+                className="rounded mx-auto d-block cart-image"
+                src={product.imageUrl}
+                alt="..."
+              />
             </div>
             <div className="col-sm-8">
               <h4 className="nomargin">
