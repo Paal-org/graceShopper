@@ -17,7 +17,6 @@ class Cart extends Component {
   render() {
     const products = this.props.cart.products;
     const isFetching = this.props.isFetching;
-    console.log(this.props);
 
     const subtotalArr =
       products &&
