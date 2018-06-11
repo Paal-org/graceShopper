@@ -1,13 +1,19 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { logout } from "../store";
-import { clearCart } from "../store/reducers/cartReducer";
-import { clearAccount } from "../store/reducers/accountReducer";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logout } from '../store';
+import { clearCart } from '../store/reducers/cartReducer';
+import { clearAccount } from '../store/reducers/accountReducer';
 
 export const Navbar = props => {
   const { handleClick, isLoggedIn, categories, firstName, cart } = props;
+  const totalCartItem =
+    cart.products &&
+    cart.products
+      .map(product => product.lineItem.purchaseQuantity)
+      .reduce((total, num) => total + num, 0);
+
   return (
     <div>
       <div>
@@ -81,7 +87,7 @@ export const Navbar = props => {
                     return (
                       <div key={category.id} className="dropdown-item">
                         <img className="nav-icon" src={category.imageUrl} />
-                        <a href={"/products/" + category.name}>
+                        <a href={'/products/' + category.name}>
                           {category.name}
                         </a>
                       </div>
@@ -100,15 +106,15 @@ export const Navbar = props => {
           <div className="col-2">
             <button type="button" className="btn navbar-light bg-light">
               <Link to="/account/cart">
-                {cart.products && cart.products.length ? (
+                {totalCartItem ? (
                   <img className="nav-icon" src="/img/shopping-basket.png" />
                 ) : (
                   <img
                     className="nav-icon"
                     src="/img/shopping-basket-empty.png"
                   />
-                )}{" "}
-                {cart.products && cart.products.length} Cart
+                )}{' '}
+                {totalCartItem} Cart
               </Link>
             </button>
           </div>
@@ -127,7 +133,7 @@ const mapState = state => {
     categories: state.categories,
     firstName: state.user.firstName,
     cart: state.cart.cart,
-    isFetching: state.cart.isFetching
+    isFetching: state.cart.isFetching,
   };
 };
 
@@ -137,7 +143,7 @@ const mapDispatch = dispatch => {
       dispatch(logout());
       dispatch(clearCart());
       dispatch(clearAccount());
-    }
+    },
   };
 };
 
@@ -151,5 +157,5 @@ export default connect(
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
 };

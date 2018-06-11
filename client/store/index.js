@@ -7,6 +7,7 @@ import productReducer from './reducers/productReducer';
 import categoryReducer from './reducers/categoryReducer';
 import accountReducer from './reducers/accountReducer';
 import cartReducer from './reducers/cartReducer';
+import orderReducer from './reducers/orderReducer';
 
 const reducer = combineReducers({
   user,
@@ -14,6 +15,7 @@ const reducer = combineReducers({
   categories: categoryReducer,
   account: accountReducer,
   cart: cartReducer,
+  pendingOrders: orderReducer,
 });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
@@ -25,3 +27,5 @@ export * from './user';
 export * from './reducers/productReducer';
 export * from './reducers/categoryReducer';
 export * from './reducers/accountReducer';
+export * from './reducers/orderReducer';
+export * from './reducers/cartReducer';

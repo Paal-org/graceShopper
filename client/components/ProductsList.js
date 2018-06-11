@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom';
 const ProductsList = props => {
   const { products, category, user } = props;
 
-  // const urlPath = props.location.pathname;
-  // const header = urlPath.slice(10).toUpperCase()
   return (
     <div>
       <div>{category ? <h1>{category}</h1> : <h1>ALL PRODUCTS</h1>}</div>

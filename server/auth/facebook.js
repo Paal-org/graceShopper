@@ -2,16 +2,15 @@ const passport = require('passport');
 const router = require('express').Router();
 const FacebookStrategy = require('passport-facebook');
 const { User } = require('../db/models');
-const { fbClientId, fbClientSecret, fcClientCallback } = require('../../secrets');
 module.exports = router;
 
 if (!process.env.FACEBOOK_APP_ID || !process.env.FACEBOOK_APP_SECRET) {
   console.log('Facebook client ID / secret not found. Skipping Google OAuth.');
 } else {
   const facebookConfig = {
-    clientID: fbClientId,
-    clientSecret: fbClientSecret,
-    callbackURL: fcClientCallback,
+    clientID: process.env.FACEBOOK_APP_ID,
+    clientSecret: process.env.FACEBOOK_APP_SECRET,
+    callbackURL: process.env.FACEBOOK_CALLBACK,
   };
 
   // profileFields: ['id', 'displayName', 'photos', 'email']
