@@ -8,30 +8,47 @@ class Products extends Component {
     super(props);
     this.state = {
       activePage: 1,
+      itemsCountPerPage: 6,
     };
+    this.handlePageChange = this.handlePageChange.bind(this);
   }
   handlePageChange(pageNumber) {
     console.log(`active page is ${pageNumber}`);
     this.setState({ activePage: pageNumber });
   }
+
   render() {
     const { products } = this.props;
+    const productsArr = products.slice();
+    const pagesArr = [];
+    const size = this.state.itemsCountPerPage;
+    while (productsArr.length > 0) {
+      pagesArr.push(productsArr.splice(0, size));
+    }
+    const singlePageArr = pagesArr[this.state.activePage - 1];
     return (
       <div>
         <Pagination
           hideDisabled
           activePage={this.state.activePage}
-          itemsCountPerPage={4}
+          itemsCountPerPage={size}
           totalItemsCount={products.length}
           onChange={this.handlePageChange}
         />
         <div className="card-columns">
           {products.length
-            ? products.map(product => (
+            ? singlePageArr.map(product => (
                 <SingleProduct product={product} key={product.id} />
               ))
             : 'There are no products'}
         </div>
+        <Pagination
+          hideDisabled
+          activePage={this.state.activePage}
+          itemsCountPerPage={size}
+          totalItemsCount={products.length}
+          onChange={this.handlePageChange}
+        />
       </div>
     );
   }

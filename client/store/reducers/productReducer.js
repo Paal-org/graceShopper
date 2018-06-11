@@ -4,13 +4,11 @@ const ADD_REVIEW = 'ADD_REVIEW';
 const GET_PRODUCTS = 'GET_PRODUCTS';
 const CREATE_PRODUCT = 'CREATE_PRODUCT';
 const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
-const PAGE_COUNT = 'PAGE_COUNT';
 
 const getProducts = products => ({ type: GET_PRODUCTS, products });
 const createProduct = product => ({ type: CREATE_PRODUCT, product });
 const updateProduct = product => ({ type: UPDATE_PRODUCT, product });
 const addReview = (id, review) => ({ type: ADD_REVIEW, review, id });
-const setPage = page => ({ type: PAGE_COUNT, page });
 
 export const addProduct = (product, ownProps) => {
   return async dispatch => {
@@ -52,8 +50,6 @@ const initialState = {
 };
 
 export default function productReducer(state = initialState, action) {
-  let pageArr;
-  let productArr;
   switch (action.type) {
     case GET_PRODUCTS:
       return { list: action.products, isFetching: true };
@@ -77,17 +73,6 @@ export default function productReducer(state = initialState, action) {
             return { ...product };
           }
         }),
-        isFetching: true,
-      };
-    case PAGE_COUNT:
-      pageArr = [];
-      productArr = state.list;
-      while (productArr.length > 0) {
-        pageArr.push(productArr.splice(0, 4));
-      }
-      return {
-        ...state,
-        list: pageArr[action.page - 1],
         isFetching: true,
       };
     default:
