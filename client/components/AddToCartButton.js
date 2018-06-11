@@ -30,6 +30,7 @@ class AddToCartButton extends Component {
   addToCart(evt) {
     evt.preventDefault();
     const { product, cart } = this.props;
+    console.log('cart in button', cart);
     const ifProductExist = cart.products.filter(
       eachProduct => eachProduct.id === this.props.product.id
     );

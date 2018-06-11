@@ -3,14 +3,15 @@ const { Order, Product, Category, LineItem } = require('../db/models');
 
 router.get('/', async (req, res, next) => {
   try {
+    if (req.user) {
     const userOrder = await Order.findOne({
       where: { userId: req.user.id, status: 'cart' },
       include: [{ all: true }, { model: Product, include: [Category] }],
     });
-    if (userOrder) {
       res.json(userOrder);
     } else {
-      res.sendStatus(404);
+      console.log('THE SESSION', req.session)
+      res.json(req.session.cart)
     }
   } catch (err) {
     next(err);
@@ -19,10 +20,11 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+    console.log(req.body);
+    if (req.user) {
     const userOrder = await Order.findOne({
       where: { userId: req.user.id, status: 'cart' },
     });
-    if (userOrder) {
       const lineItem = await LineItem.create({
         purchaseQuantity: req.body.purchaseQuantity,
         orderId: userOrder.id,
@@ -33,7 +35,16 @@ router.post('/', async (req, res, next) => {
 
       res.json(objToSend);
     } else {
-      res.sendStatus(404);
+      req.session.cart.products.push(req.body.product);
+      console.log(req.body);
+      const lineItem = {
+        purchaseQuantity: req.body.purchaseQuantity,
+        // orderId: userOrder.id,
+        productId: req.body.product.id,
+      };
+      const objToSend = Object.assign({ lineItem }, req.body.product);
+      console.log(req.session);
+      res.json(objToSend);
     }
   } catch (err) {
     next(err);
