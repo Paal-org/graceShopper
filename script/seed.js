@@ -74,7 +74,7 @@ async function seed() {
         'Consumed by many characters, this beer has been prevalent throughout the series since its introduction in May 1990, and provides a basis for numerous storylines. Variations include Duff Lite, Duff Dry, and Duff Dark. Fudd Beer is sold in competition with Duff Beer, and is reportedly popular in Shelbyville despite having blinded hillbillies.',
       price: 895,
       imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/AKE_Duff_Beer_IMG_5244_edit.jpg/170px-AKE_Duff_Beer_IMG_5244_edit.jpg',
+        'https://4vector.com/i/free-vector-duff-beer_058407_duff-beer.png',
       inventoryQuantity: 50,
       categoryId: category[0].id,
     }),
@@ -154,7 +154,7 @@ async function seed() {
         NICKELODEON’S RUGRATS – Made famous by the popular 90s Nickelodeon show Rugrats, Reptar Cereal features the beloved green dinosaur, Reptar; the favorite character of Tommy Pickles, Chuckie Finster, Phil and Lil, and Angelica.`,
       price: 1495,
       imageUrl:
-        'https://i.pinimg.com/236x/8a/5d/46/8a5d46de1915470619e02c34825e4b5c--rugrats-weird.jpg',
+        'https://cdn-media.threadless.com/submissions/586742-5855d2ab188c4b6532009617f0cfc83b.jpg',
       inventoryQuantity: 50,
       categoryId: category[1].id,
     }),

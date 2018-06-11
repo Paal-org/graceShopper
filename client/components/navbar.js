@@ -9,7 +9,6 @@ import { clearAccount } from '../store/reducers/accountReducer';
 
 const Navbar = props => {
   const { handleClick, isLoggedIn, categories, firstName, cart } = props;
-  console.log(categories);
   return (
     <div>
       <div>
