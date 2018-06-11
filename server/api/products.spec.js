@@ -10,16 +10,12 @@ describe("Product routes", () => {
   });
 
   describe("/api/products/", () => {
-    const blue = {
-      name: "Blue Milk",
-      description:
-        "Blue coloured bantha milk. Bantha is an animal, which lives on planet Tatooine.",
-      price: 8
-    };
-
     beforeEach(() => {
       return Product.create({
-        blue
+        name: "Blue Milk",
+        description:
+          "Blue coloured bantha milk. Bantha is an animal, which lives on planet Tatooine.",
+        price: 8
       });
     });
 
@@ -29,8 +25,25 @@ describe("Product routes", () => {
         .expect(200)
         .then(res => {
           expect(res.body).to.be.an("array");
-          expect(res.body[0].name).to.be.equal(blue.name);
+          expect(res.body[0].name).to.be.equal("Blue Milk");
+        });
+    });
+
+    it("POST /api/products", () => {
+      return request(app)
+        .post("/api/products")
+        .send({
+          name: "Blue Milk",
+          description:
+            "Blue coloured bantha milk. Bantha is an animal, which lives on planet Tatooine.",
+          price: 8
+        }) // the HTTP request body
+        .expect(201) // you'll have to customize the status yourself
+        .expect("Content-Type", /json/)
+        .then(res => {
+          expect(res.body).to.be.an("object");
         });
     });
   }); // end describe('/api/users')
-}); // end describe('User routes')
+});
+// end describe('Product routes')

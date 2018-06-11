@@ -5,10 +5,10 @@ const GET_PRODUCTS = "GET_PRODUCTS";
 const CREATE_PRODUCT = "CREATE_PRODUCT";
 const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 
-const getProducts = products => ({ type: GET_PRODUCTS, products });
-const createProduct = product => ({ type: CREATE_PRODUCT, product });
-const updateProduct = product => ({ type: UPDATE_PRODUCT, product });
-const addReview = (id, review) => ({ type: ADD_REVIEW, review, id });
+export const getProducts = products => ({ type: GET_PRODUCTS, products });
+export const createProduct = product => ({ type: CREATE_PRODUCT, product });
+export const updateProduct = product => ({ type: UPDATE_PRODUCT, product });
+export const addReview = (id, review) => ({ type: ADD_REVIEW, review, id });
 
 export const addProduct = (product, ownProps) => {
   return async dispatch => {
