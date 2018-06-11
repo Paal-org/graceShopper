@@ -9,7 +9,7 @@ const LineItem = db.define('lineItem', {
   },
   purchasePrice: {
     type: Sequelize.INTEGER,
-    defaultValue: null,
+    defaultValue: 1,
   },
   purchaseQuantity: {
     type: Sequelize.INTEGER,
