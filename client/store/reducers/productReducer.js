@@ -60,7 +60,8 @@ export default function productReducer(state = initialState, action) {
         list: state.list.map(
           product =>
             action.product.id === product.id ? action.product : product
-        ), isFetching: true
+        ),
+        isFetching: true,
       };
     case ADD_REVIEW:
       return {
