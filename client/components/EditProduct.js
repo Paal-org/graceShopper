@@ -27,9 +27,9 @@ class EditProduct extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.editProduct(this.state);
-    this.props.history.push(
-      `/products/${this.props.product.category.name}/${this.props.product.id}`
-    );
+    // this.props.history.push(
+    //   `/products/${this.props.product.category.name}/${this.props.product.id}`
+    // );
   }
   componentDidMount() {
     this.setState(this.props.product);

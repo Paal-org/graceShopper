@@ -27,8 +27,10 @@ export const fetchProducts = () => {
 export const editProduct = (id, product, ownProps) => {
   return async dispatch => {
     try {
+      console.log('product', product)
       const { data } = await axios.put(`/api/products/${id}`, product);
       dispatch(updateProduct(data));
+      console.log('DATA', data)
       ownProps.history.push(`/products/${data.category.name}/${data.id}`);
     } catch (err) {
       console.error(err);

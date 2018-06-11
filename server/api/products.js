@@ -38,6 +38,8 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
+    req.body.categoryId = +req.body.categoryId
+    console.log('form submit', req.body)
     const product = await Product.findById(req.params.id, {
       include: [
         { all: true },
@@ -45,8 +47,9 @@ router.put('/:id', async (req, res, next) => {
         { model: Review, include: [User] },
       ],
     });
-    product.update(req.body);
-    res.json(product);
+    product.setCategory(req.body.categoryId)
+    const updatedProduct = await product.update(req.body);
+    res.json(updatedProduct);
   } catch (err) {
     next(err);
   }
