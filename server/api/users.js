@@ -22,3 +22,4 @@ router.get('/account', (req, res, next) => {
     })
     .catch(next);
 });
+

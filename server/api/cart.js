@@ -10,7 +10,7 @@ router.get('/', async (req, res, next) => {
     if (userOrder) {
       res.json(userOrder);
     } else {
-      res.sendStatus(404);
+      res.json(req.session.cart)
     }
   } catch (err) {
     next(err);
@@ -19,6 +19,7 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+    console.log(req.body);
     const userOrder = await Order.findOne({
       where: { userId: req.user.id, status: 'cart' },
     });
@@ -33,7 +34,16 @@ router.post('/', async (req, res, next) => {
 
       res.json(objToSend);
     } else {
-      res.sendStatus(404);
+      req.session.cart.products.push(req.body.product);
+      console.log(req.body);
+      const lineItem = {
+        purchaseQuantity: req.body.purchaseQuantity,
+        // orderId: userOrder.id,
+        productId: req.body.product.id,
+      };
+      const objToSend = Object.assign({ lineItem }, req.body.product);
+      console.log(req.session);
+      res.json(objToSend);
     }
   } catch (err) {
     next(err);
