@@ -41,10 +41,11 @@ router.post('/logout', (req, res) => {
 router.get('/me', (req, res) => {
   if (!req.user) {
     req.session.cart = { id: req.session.id, products: [] };
+    res.send('WHHHHHY?')
   }
-  console.log('req.session', req.session);
-  console.log('req.user', req.user);
-  res.json(req.user);
+  else {
+    res.json(req.user);
+  }
 });
 
 router.use('/google', require('./google'));

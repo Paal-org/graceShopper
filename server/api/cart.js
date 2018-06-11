@@ -3,13 +3,14 @@ const { Order, Product, Category, LineItem } = require('../db/models');
 
 router.get('/', async (req, res, next) => {
   try {
+    if (req.user) {
     const userOrder = await Order.findOne({
       where: { userId: req.user.id, status: 'cart' },
       include: [{ all: true }, { model: Product, include: [Category] }],
     });
-    if (userOrder) {
       res.json(userOrder);
     } else {
+      console.log('THE SESSION', req.session)
       res.json(req.session.cart)
     }
   } catch (err) {
@@ -20,10 +21,10 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     console.log(req.body);
+    if (req.user) {
     const userOrder = await Order.findOne({
       where: { userId: req.user.id, status: 'cart' },
     });
-    if (userOrder) {
       const lineItem = await LineItem.create({
         purchaseQuantity: req.body.purchaseQuantity,
         orderId: userOrder.id,
