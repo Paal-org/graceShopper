@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios from "axios";
 
-const ADD_REVIEW = 'ADD_REVIEW';
-const GET_PRODUCTS = 'GET_PRODUCTS';
-const CREATE_PRODUCT = 'CREATE_PRODUCT';
-const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
+const ADD_REVIEW = "ADD_REVIEW";
+const GET_PRODUCTS = "GET_PRODUCTS";
+const CREATE_PRODUCT = "CREATE_PRODUCT";
+const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 
 const getProducts = products => ({ type: GET_PRODUCTS, products });
 const createProduct = product => ({ type: CREATE_PRODUCT, product });
@@ -12,7 +12,7 @@ const addReview = (id, review) => ({ type: ADD_REVIEW, review, id });
 
 export const addProduct = (product, ownProps) => {
   return async dispatch => {
-    const { data } = await axios.post('/api/products', product);
+    const { data } = await axios.post("/api/products", product);
     dispatch(createProduct(data));
     ownProps.history.push(`/products/${data.category.name}/${data.id}`);
   };
@@ -20,7 +20,7 @@ export const addProduct = (product, ownProps) => {
 
 export const fetchProducts = () => {
   return async dispatch => {
-    const { data } = await axios.get('/api/products');
+    const { data } = await axios.get("/api/products");
     dispatch(getProducts(data));
   };
 };
@@ -46,7 +46,7 @@ export const postReview = (id, review) => {
 
 const initialState = {
   list: [],
-  isFetching: false,
+  isFetching: false
 };
 
 export default function productReducer(state = initialState, action) {
@@ -60,7 +60,8 @@ export default function productReducer(state = initialState, action) {
         list: state.list.map(
           product =>
             action.product.id === product.id ? action.product : product
-        ), isFetching: true
+        ),
+        isFetching: true
       };
     case ADD_REVIEW:
       return {
@@ -72,7 +73,7 @@ export default function productReducer(state = initialState, action) {
             return { ...product };
           }
         }),
-        isFetching: true,
+        isFetching: true
       };
     default:
       return state;
