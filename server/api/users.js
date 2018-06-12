@@ -14,11 +14,14 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/account', (req, res, next) => {
-  User.findById(req.user.id, {
-    include: [{ all: true }, { model: Order, include: [{ all: true }] }],
-  })
-    .then(eachUser => {
-      res.json(eachUser);
+  if(req.user) {
+    User.findById(req.user.id, {
+      include: [{ all: true }, { model: Order, include: [{ all: true }] }],
     })
-    .catch(next);
+      .then(eachUser => {
+        res.json(eachUser);
+      })
+      .catch(next);
+  }
 });
+

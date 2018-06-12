@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import PropTypes from 'prop-types'
-import { connect } from 'react-redux';
-import CartItem from './CartItem';
-import { pushOrder } from '../store/reducers/accountReducer';
-import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import CartItem from "./CartItem";
+import { pushOrder } from "../store/reducers/accountReducer";
+import { Link } from "react-router-dom";
 
 class Cart extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class Cart extends Component {
   render() {
     const products = this.props.cart.products;
     const isFetching = this.props.isFetching;
-
+    const isLoggedIn = this.props.isLoggedin
     const subtotalArr =
       products &&
       products.map(product => {
@@ -29,7 +29,7 @@ class Cart extends Component {
     if (!isFetching) {
       return <div>Loading...</div>;
     }
-    if (!products.length) {
+    if (products && !products.length) {
       return (
         <div>
           <br />
@@ -46,13 +46,13 @@ class Cart extends Component {
         <table id="cart" className="table table-hover table-condensed">
           <thead>
             <tr>
-              <th style={{ width: '50%' }}>Product</th>
-              <th style={{ width: '10%' }}>Price</th>
-              <th style={{ width: '8%' }}>Quantity</th>
-              <th style={{ width: '22%' }} className="text-center">
+              <th style={{ width: "50%" }}>Product</th>
+              <th style={{ width: "10%" }}>Price</th>
+              <th style={{ width: "8%" }}>Quantity</th>
+              <th style={{ width: "22%" }} className="text-center">
                 Subtotal
               </th>
-              <th style={{ width: '10%' }} />
+              <th style={{ width: "10%" }} />
             </tr>
           </thead>
 
@@ -81,8 +81,9 @@ class Cart extends Component {
                   <button
                     type="button"
                     href="#"
-                    className="btn btn-success btn-block"
+                    className="btn btn-success btn-block checkout"
                     onClick={this.handleSubmit}
+                    disabled={!isLoggedIn}
                   >
                     Checkout <i className="fa fa-angle-right" />
                   </button>
@@ -100,12 +101,13 @@ const mapState = state => {
   return {
     cart: state.cart.cart,
     isFetching: state.cart.isFetching,
+    isLoggedIn: !!state.user.id,
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    pushOrder: order => dispatch(pushOrder(order)),
+    pushOrder: order => dispatch(pushOrder(order))
   };
 };
 

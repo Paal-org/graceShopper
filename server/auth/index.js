@@ -1,46 +1,62 @@
-const router = require('express').Router();
-const User = require('../db/models/user');
+const router = require("express").Router();
+const {User, Order, Product, Category, LineItem} = require("../db/models");
 module.exports = router;
 
-router.post('/login', (req, res, next) => {
-  User.findOne({ where: { email: req.body.email } })
-    .then(user => {
-      if (!user) {
-        console.log('No such user found:', req.body.email);
-        res.status(401).send('Wrong username and/or password');
-      } else if (!user.correctPassword(req.body.password)) {
-        console.log('Incorrect password for user:', req.body.email);
-        res.status(401).send('Wrong username and/or password');
-      } else {
-        req.login(user, err => (err ? next(err) : res.json(user)));
-      }
-    })
-    .catch(next);
+router.post("/login", async (req, res, next) => {
+  try {
+    const user = await User.findOne({ where: { email: req.body.email } });
+    if (!user) {
+      console.log("No such user found:", req.body.email);
+      res.status(401).send("Wrong username and/or password");
+    } else if (!user.correctPassword(req.body.password)) {
+      console.log("Incorrect password for user:", req.body.email);
+      res.status(401).send("Wrong username and/or password");
+    } else {
+      // const currentCart = await Order.findOne({
+      //   where: { userId: req.user.id, status: "cart" },
+      //   include: [{ all: true }, { model: Product, include: [Category] }]
+      // })
+      // const sessionCart = req.session.cart.products
+      // sessionCart.forEach(product => {
+
+      // })
+
+      req.login(user, err => (err ? next(err) : res.json(user)));
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
-router.post('/signup', async (req, res, next) => {
+router.post("/signup", async (req, res, next) => {
   try {
     const user = await User.create(req.body);
     await user.createCart();
     req.login(user, err => (err ? next(err) : res.json(user)));
   } catch (err) {
-    if (err.name === 'SequelizeUniqueConstraintError') {
-      res.status(401).send('User already exists');
+    if (err.name === "SequelizeUniqueConstraintError") {
+      res.status(401).send("User already exists");
     } else {
       next(err);
     }
   }
 });
 
-router.post('/logout', (req, res) => {
+router.post("/logout", (req, res) => {
   req.logout();
   req.session.destroy();
-  res.redirect('/');
+
+  res.redirect("/");
 });
 
-router.get('/me', (req, res) => {
-  res.json(req.user);
+router.get("/me", (req, res) => {
+  if (!req.user) {
+    req.session.cart = { products: [] };
+    res.sendStatus(200);
+  } else {
+    res.json(req.user);
+  }
 });
 
-router.use('/google', require('./google'));
-router.use('/facebook', require('./facebook'));
+router.use("/google", require("./google"));
+router.use("/facebook", require("./facebook"));

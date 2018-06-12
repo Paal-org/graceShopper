@@ -66,7 +66,7 @@ form div {
   background-color: #58b19f;
 }
 .edit-product:disabled,
-.addToCartButton:disabled {
+.addToCartButton:disabled, .checkout:disabled {
   background-color: #cad3c8;
   color: #2c3a47;
 }

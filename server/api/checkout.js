@@ -1,8 +1,8 @@
-const router = require('express').Router();
-const { Order, User, Category, Product } = require('../db/models');
+const router = require("express").Router();
+const { Order, User, Category, Product } = require("../db/models");
 //import
 
-router.put('/', async (req, res, next) => {
+router.put("/", async (req, res, next) => {
   try {
     const userOrder = await Order.findOne({
       where: { id: req.body.id },
