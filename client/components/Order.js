@@ -1,13 +1,12 @@
-import React from 'react';
-import OrderLineItem from './OrderLineItem';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React from "react";
+import OrderLineItem from "./OrderLineItem";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 const Order = props => {
   const order = props.order || {};
   const user = props.user || {};
-  console.log('props', props);
-  console.log('user', user);
+
   const products = props.order.products || [];
   const subtotalArr =
     products &&
@@ -26,10 +25,10 @@ const Order = props => {
         <table id="cart" className="table table-condensed">
           <thead>
             <tr>
-              <th style={{ width: '60%' }}>Product</th>
-              <th style={{ width: '20%' }}>Price</th>
-              <th style={{ width: '8%' }}>Quantity</th>
-              <th style={{ width: '22%' }} className="text-center">
+              <th style={{ width: "60%" }}>Product</th>
+              <th style={{ width: "20%" }}>Price</th>
+              <th style={{ width: "8%" }}>Quantity</th>
+              <th style={{ width: "22%" }} className="text-center">
                 Subtotal
               </th>
             </tr>
@@ -63,10 +62,9 @@ const Order = props => {
 //if admin, make link to go back to all pending orders
 
 const mapState = (state, ownProps) => {
-  console.log('ownProps', ownProps);
   return {
     user: state.user,
-    isFetching: state.pendingOrders.isFetching && state.products.isFetching,
+    isFetching: state.pendingOrders.isFetching && state.products.isFetching
   };
 };
 

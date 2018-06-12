@@ -13,7 +13,6 @@ class Products extends Component {
     this.handlePageChange = this.handlePageChange.bind(this);
   }
   handlePageChange(pageNumber) {
-    console.log(`active page is ${pageNumber}`);
     this.setState({ activePage: pageNumber });
   }
 

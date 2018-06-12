@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
-import { clearCart } from "../store/reducers/cartReducer";
+import { clearCart, fetchCart } from "../store/reducers/cartReducer";
 import { clearAccount } from "../store/reducers/accountReducer";
 import Konami from "konami";
 

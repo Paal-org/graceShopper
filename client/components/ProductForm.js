@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 const ProductForm = props => {
   const { handleSubmit, handleChange, categories } = props;
-  console.log("EDIT", props);
   return (
     <div>
       <div className="product-form" />

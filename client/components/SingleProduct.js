@@ -6,7 +6,6 @@ import AverageRating from './AverageRating';
 
 const SingleProduct = props => {
   const { product, user } = props;
-  console.log();
   return (
     <div className="card p-2 m-3 " style={{ width: '18rem' }}>
       <Link to={`/products/${product.category.name}/${product.id}`}>

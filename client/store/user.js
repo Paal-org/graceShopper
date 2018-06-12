@@ -56,6 +56,7 @@ export const logout = () => dispatch =>
     .post('/auth/logout')
     .then(_ => {
       dispatch(removeUser());
+      dispatch(fetchCart())
       history.push('/home');
     })
     .catch(err => console.log(err));
