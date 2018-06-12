@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import SingleProduct from './SingleProduct';
 import Pagination from 'react-js-pagination';
 
@@ -13,7 +12,6 @@ class Products extends Component {
     this.handlePageChange = this.handlePageChange.bind(this);
   }
   handlePageChange(pageNumber) {
-    console.log(`active page is ${pageNumber}`);
     this.setState({ activePage: pageNumber });
   }
 

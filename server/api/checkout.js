@@ -16,8 +16,6 @@ router.put('/', async (req, res, next) => {
       shippingStatus: 'pending',
     });
     const newCart = await currentUser.createCart();
-    console.log('userorder', updatedOrder); //need to include products array through lineItems
-    console.log('newCart', newCart);
     res.json({ updatedOrder, newCart });
   } catch (err) {
     next(err);

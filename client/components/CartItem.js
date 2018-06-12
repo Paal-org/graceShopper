@@ -46,7 +46,7 @@ class CartItem extends Component {
               />
             </div>
             <div className="col-sm-8">
-              <h4 className="nomargin">
+              <h4 className="nomargin product-name">
                 <Link to={`/products/${product.category.name}/${product.id}`}>
                   {product.name}
                 </Link>
@@ -54,7 +54,9 @@ class CartItem extends Component {
             </div>
           </div>
         </td>
-        <td data-th="Price">$ {product.price}</td>
+        <td data-th="Price" className="price">
+          $ {product.price}
+        </td>
         <td data-th="Quantity">
           <form onSubmit={this.updateToCart}>
             <input

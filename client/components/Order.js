@@ -6,8 +6,7 @@ import { connect } from 'react-redux';
 const Order = props => {
   const order = props.order || {};
   const user = props.user || {};
-  console.log('props', props);
-  console.log('user', user);
+
   const products = props.order.products || [];
   const subtotalArr =
     products &&

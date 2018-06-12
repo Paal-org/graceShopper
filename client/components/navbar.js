@@ -163,7 +163,10 @@ export const Navbar = props => {
       <div>
         <div className="row">
           <Link to="/home" className="col-8">
-            <h1>Provisions, Alcohol and Libations</h1>
+            <div className="row">
+              <img className="logo" src="/img/paal.png" />
+              <h1>Provisions, Alcohol and Libations</h1>
+            </div>
           </Link>
           {/* ----------------------LOGIN-SIGNUP-LOGOUT----------------------- */}
           <div>

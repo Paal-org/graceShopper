@@ -21,6 +21,10 @@ form div {
   display: inline-block;
 }
 
+.logo {
+  height: 60px;
+}
+
 .nav-icon {
   height: 35px;
 }
@@ -28,7 +32,19 @@ form div {
 .icon {
   height: 30px;
 }
+.carousel-image{
+  height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.carousel-indicators,
+.carousel-control-prev,
+.carousel-control-next {
+  color: #182c61;
+  background-color: #CAD3C8
+}
 
+.signup-login-Button,
 .addToCartButton,
 .add-product,
 .product-form-btn,
@@ -40,6 +56,7 @@ form div {
   border-radius: 12px;
 }
 
+.signup-login-Button:hover,
 .addToCartButton:hover,
 .add-product:hover,
 .product-form-btn:hover,
@@ -77,6 +94,7 @@ form div {
 /* On mouse-over, add a deeper shadow */
 .card:hover {
   box-shadow: 0 8px 16px 0  rgba(88, 177, 159, 0.2);
+  border-color: #2c3a47;
 }
 
 
