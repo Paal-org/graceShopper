@@ -33,8 +33,6 @@ router.post("/", async (req, res, next) => {
 
       res.json(objToSend);
     } else {
-      req.session.cart.products.push(req.body.product);
-
       const lineItem = {
         purchaseQuantity: req.body.purchaseQuantity,
         // orderId: userOrder.id,
@@ -42,6 +40,7 @@ router.post("/", async (req, res, next) => {
       };
       const objToSend = Object.assign({ lineItem }, req.body.product);
 
+      req.session.cart.products.push(objToSend);
       res.json(objToSend);
     }
   } catch (err) {
@@ -67,24 +66,23 @@ router.put("/", async (req, res, next) => {
       });
       res.json(objToSend);
     } else {
-      console.log("req.body cart put route", req.body);
       const updatedProduct = req.body.product;
 
       const existingCart = req.session.cart.products;
       let filteredCart = existingCart.filter(
         cartItem => cartItem.id !== updatedProduct.id
       );
-      const updatedCart = [...filteredCart, updatedProduct];
-      req.session.cart.products = updatedCart;
+
       const lineItem = {
         purchaseQuantity: req.body.purchaseQuantity, // orderId: userOrder.id,
         productId: req.body.product.id
       };
-      // filteredCart.lineItem.purchaseQuantity = req.body.purchaseQuantity;
       const objToSend = Object.assign({
         ...req.body.product,
         lineItem
       });
+      const updatedCart = [...filteredCart, objToSend];
+      req.session.cart.products = updatedCart;
       res.json(objToSend);
     }
   } catch (err) {
