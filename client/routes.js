@@ -71,9 +71,7 @@ class Routes extends Component {
                   exact
                   path="/orders/:id"
                   render={() => {
-                    console.log('in render', this.props);
                     const orderId = +this.props.location.pathname.split('/')[2];
-                    console.log('orderId', orderId);
                     return (
                       <Order
                         order={
@@ -100,7 +98,6 @@ class Routes extends Component {
  * CONTAINER
  */
 const mapState = state => {
-  console.log('pendingorders', state.pendingOrders);
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey

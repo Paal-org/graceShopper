@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { createStore } from 'redux';
 import { ADD_ORDER } from './accountReducer';
 
 const GET_CART = 'GET_CART';
@@ -9,7 +10,7 @@ const DELETE_CART_ITEM = 'DELETE_CART_ITEM';
 //setCart
 //const SET_CART = 'SET_CART';
 
-const getCart = cart => ({ type: GET_CART, cart });
+export const getCart = cart => ({ type: GET_CART, cart });
 const addToCart = item => {
   return { type: ADD_TO_CART, item };
 };
@@ -67,7 +68,7 @@ export const destroyCartItem = id => {
   };
 };
 
-export default function cartReducer(state = initialState, action) {
+export function cartReducer(state = initialState, action) {
   let productsArr;
   switch (action.type) {
     case GET_CART: {
@@ -107,3 +108,7 @@ export default function cartReducer(state = initialState, action) {
       return state;
   }
 }
+
+const store = createStore(cartReducer);
+
+export default store;

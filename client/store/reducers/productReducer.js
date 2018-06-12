@@ -39,7 +39,6 @@ export const editProduct = (id, product, ownProps) => {
 export const postReview = (id, review) => {
   return async dispatch => {
     const { data } = await axios.post(`/api/products/${id}/review`, review);
-    console.log(data);
     dispatch(addReview(id, data));
   };
 };
