@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import SingleProduct from './SingleProduct';
 import Pagination from 'react-js-pagination';
 

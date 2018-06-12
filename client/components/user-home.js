@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { HomePageCarousel } from './HomePageCarousel';
 
 /**
  * COMPONENT
@@ -12,6 +13,7 @@ export const UserHome = props => {
   return (
     <div>
       <h3>Welcome{isLoggedIn && `, ${firstName}`}</h3>
+      <HomePageCarousel />
     </div>
   );
 };
