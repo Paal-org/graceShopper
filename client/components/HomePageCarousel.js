@@ -7,6 +7,7 @@ export const HomePageCarousel = () => {
         id="carouselExampleIndicators"
         className="carousel slide"
         data-ride="carousel"
+        data-interval="3000"
       >
         <ol className="carousel-indicators">
           <li
@@ -28,14 +29,14 @@ export const HomePageCarousel = () => {
           <div className="carousel-item">
             <img
               className="d-block carousel-image"
-              src="/img/FictionalFood-2.jpg"
+              src="/img/FictionalFood-3.jpg"
               alt="Second slide"
             />
           </div>
           <div className="carousel-item">
             <img
               className="d-block carousel-image"
-              src="/img/FictionalFood-3.jpg"
+              src="/img/FictionalFood-2.jpg"
               alt="Third slide"
             />
           </div>
