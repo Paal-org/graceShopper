@@ -1,7 +1,7 @@
 README.md for GraceShopper
 
-
 Credit for icons:
+
 <div>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 
 <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
@@ -14,3 +14,8 @@ Credit for icons:
 
 homepage images by:
 Joshua Budich
+
+ <div> Emoji Cursor.js
+  - 90's cursors collection
+  -- <a href='https://github.com/tholman/90s-cursor-effects'>GitHub</a>
+  <a href='https://codepen.io/tholman/full/rxJpdQ'>CodePen</a></div>
