@@ -88,6 +88,24 @@ async function seed() {
       categoryId: category[0].id,
     }),
     Product.create({
+      name: 'Pabst Blue Robot',
+      description: `Brewed with real robot shavings! Consumption by organics with digestive systems inexperienced with metals may want to be avoided.`,
+      price: 795,
+      imageUrl:
+        'https://www.serieslyawesome.tv/wp-content/uploads/2017/02/Joshua-Budich-fictional-food-2-futurama.jpg',
+      inventoryQuantity: 70,
+      categoryId: category[0].id,
+    }),
+    Product.create({
+      name: 'Benterbrau',
+      description: `Bender resembled a pregnant robot mimicking all the signs of pregnancy. At first all the ingredients were boiled inside Bender while he sat on the stove reading a magazine called Victoria's Circuits. When Bender burped, foam came out of his mouth and Leela tasted it saying that it was cooked. Leela added the yeast by unscrewing the antenne at the top of his head and adding a funnel. Upon revealing that yeast was needed Bender emotionally exclaimed: 'Yeast? You mean... I'll have a life form growing inside me? It's so beautiful.'`,
+      price: 795,
+      imageUrl:
+        'https://res.cloudinary.com/teepublic/image/private/s--6T0ESMkE--/t_Preview/b_rgb:42332c,c_limit,f_jpg,h_630,q_90,w_630/v1485391878/production/designs/1144146_1.jpg',
+      inventoryQuantity: 70,
+      categoryId: category[0].id,
+    }),
+    Product.create({
       name: 'Blue Milk',
       description: `Blue coloured bantha milk. Bantha is an animal, which lives on planet Tatooine.`,
       price: 795,
@@ -96,11 +114,28 @@ async function seed() {
       categoryId: category[0].id,
     }),
     Product.create({
+      name: 'Malk',
+      description: `Malk is a drink which is served with the lunches at Springfield Elementary School instead of milk. It has "vitamin R" and doesn't seem to have any nutritional value`,
+      price: 795,
+      imageUrl: 'http://zupimages.net/up/15/22/a66i.jpg',
+      inventoryQuantity: 70,
+      categoryId: category[0].id,
+    }),
+    Product.create({
       name: 'Fizzy Bubblech',
-      description: `A soft drink in an unusually shaped bottle popular in Israel.`,
+      description: `Slurm is a fictional soft drink in the Futurama multiverse. It is popular and highly addictive. It is Philip J. Fry I's favorite drink. It is widely seen throughout the universe. Slurm delivery trucks can be frequently spotted, including in the Futurama Opening Credits (shortly before the Planet Express ship crashes into the billboard). The drink's slogan is 'It's Highly Addictive!' and its distribution is handled by Bureau of Soft Drinks, Tobacco, and Firearms, a parody of the Bureau of Alcohol, Tobacco, and Firearms (which is now known as Bureau of Alcohol, Tobacco, Firearms and Explosives).`,
       price: 695,
       imageUrl:
         'https://www.spreadshirt.com/image-server/v1/mp/designs/1009298187,width=178,height=178/zohan-fizzy-bubblech.png',
+      inventoryQuantity: 90,
+      categoryId: category[0].id,
+    }),
+    Product.create({
+      name: 'Slurm',
+      description: `A soft drink in an unusually shaped bottle popular in Israel.`,
+      price: 695,
+      imageUrl:
+        'http://1.bp.blogspot.com/-ckhg8l6br2k/VWKMnf7uz_I/AAAAAAAANvs/wL3IGbb07pA/s640/JoshuaBudich_12up-Slurm_b1d15e25-dea0-4a47-ac00-b38c96888aad_1024x1024.jpg',
       inventoryQuantity: 90,
       categoryId: category[0].id,
     }),
@@ -116,6 +151,17 @@ async function seed() {
         element that contributes to the Krusty Krab's existence. A running gag throughout the series is Plankton trying to steal the Krabby Patty secret formula.`,
       price: 895,
       imageUrl: 'https://i.ytimg.com/vi/k5e1HPeusiA/hqdefault.jpg',
+      inventoryQuantity: 100,
+      categoryId: category[1].id,
+    }),
+    Product.create({
+      name: 'Krusty Burger',
+      description: `Krusty Burger was founded by Krusty the Clown, star of The Krusty the Clown Show.
+
+      During the Summer of 1984, Krusty Burger launched a promotion that gave free burgers to those who pick Olympic Events won by the United States on their game cards. The games involved in the promotion were games that were traditionally won by the Russians. Unfortunately for Krusty, the Russians boycott the Olympics, and the United States won almost every event, costing him $44 million. He then vows on camera to spit on every fiftieth burger as a result of his loss (with Homer in particular "liking those odds" when hearing this)..`,
+      price: 895,
+      imageUrl:
+        'https://i.pinimg.com/originals/6e/af/29/6eaf2932cae3a18599edd7fa41b8f4e9.jpg',
       inventoryQuantity: 100,
       categoryId: category[1].id,
     }),
@@ -140,12 +186,40 @@ async function seed() {
       categoryId: category[1].id,
     }),
     Product.create({
+      name: `Fishy Joes`,
+      description: `Fishy Joe's fast food restaurants are run by Fishy Joe himself. The franchise doesn't care about the environment, and usually cooks animals, despite protests from environmental activists. Free Waterfall Jr. and MEAT once tried to shut down Fishy Joe's, but didn't succeed.`,
+      price: 1295,
+      imageUrl:
+        'https://cdn.shopify.com/s/files/1/0073/2452/products/JoshuaBudich-FictionalFood-Popplers_grande.jpg?v=1485473595',
+      inventoryQuantity: 30,
+      categoryId: category[1].id,
+    }),
+    Product.create({
       name: `Panucci's Pizza`,
       description: `The restaurant appeared to have an overall good corporate climate, although Mr. Panucci did not take public health laws particularly seriously. The interior of the restaurant included green decorative and some rips in the edges of the walls, revealing the bricks beneath. The tables included orange seats and red and white checkered tablecloths.`,
       price: 1595,
       imageUrl:
         'https://i.pinimg.com/736x/e4/e8/00/e4e800cca234992835db9bab595fc501--futurama-pizza.jpg',
       inventoryQuantity: 30,
+      categoryId: category[1].id,
+    }),
+    Product.create({
+      name: `Wonka Bar`,
+      description: `The Wonka Bar is both a fictional candy bar, introduced as a key story point in the 1964 novel Charlie and the Chocolate Factory by Roald Dahl, and a type of consumer product candy bar inspired by the fictional confection.`,
+      price: 1595,
+      imageUrl:
+        'https://2.bp.blogspot.com/-R8inw3K8r0o/VVynMX00odI/AAAAAAABCRU/t0YLq49XEhE/s1600/Fictional%2BFood%2B-%2BWonka%2BBar%2Bby%2BJoshua%2BBudich.jpg',
+      inventoryQuantity: 30,
+      categoryId: category[1].id,
+    }),
+
+    Product.create({
+      name: `Krusty o's`,
+      description: `Krusty-Brand Cereal is the catalyst for the episode "'Round Springfield", when Bart swallows a "jagged metal Krusty-O" included in the box as a premium and is sent to the hospital. Later in the episode when Krusty holds a press conference to show that swallowing the jagged metal Krusty-O isn't dangerous, he immediately begins to gag before he is informed he swallowed a "regular" Krusty-O, which he claims must be "poison". At the end of the episode, another box of Krusty-Brand Cereal is shown with this promotion: "Flesh-Eating Bacteria In Every Box!", with Bart implying that he's planning to orchestrate another Krusty-O's-related lawsuit to replenish the $500 he spent on the then-recently deceased Bleeding Gums Murphy's sole album to give to Lisa.`,
+      price: 765,
+      imageUrl:
+        'https://i.pinimg.com/originals/71/3e/90/713e90fbd17bec00705faccee4c50336.jpg',
+      inventoryQuantity: 40,
       categoryId: category[1].id,
     }),
     Product.create({
