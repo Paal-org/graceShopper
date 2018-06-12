@@ -12,10 +12,10 @@ router.post("/login", async (req, res, next) => {
       console.log("Incorrect password for user:", req.body.email);
       res.status(401).send("Wrong username and/or password");
     } else {
-      const currentCart = await Order.findOne({
-        where: { userId: req.user.id, status: "cart" },
-        include: [{ all: true }, { model: Product, include: [Category] }]
-      })
+      // const currentCart = await Order.findOne({
+      //   where: { userId: req.user.id, status: "cart" },
+      //   include: [{ all: true }, { model: Product, include: [Category] }]
+      // })
       // const sessionCart = req.session.cart.products
       // sessionCart.forEach(product => {
 
