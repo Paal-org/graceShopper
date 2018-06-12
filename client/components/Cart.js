@@ -17,7 +17,7 @@ class Cart extends Component {
   render() {
     const products = this.props.cart.products;
     const isFetching = this.props.isFetching;
-    const isLoggedIn = this.props.isLoggedin
+    const isLoggedIn = this.props.isLoggedin;
     const subtotalArr =
       products &&
       products.map(product => {
@@ -78,15 +78,14 @@ class Cart extends Component {
               </td>
               <td>
                 <Link to="/account">
-                  <button
-                    type="button"
-                    href="#"
-                    className="btn btn-success btn-block checkout"
-                    onClick={this.handleSubmit}
-                    disabled={!isLoggedIn}
-                  >
-                    Checkout <i className="fa fa-angle-right" />
-                  </button>
+
+                    <button
+                      type="button"
+                      className="btn btn-success btn-block checkout"
+                      onClick={this.handleSubmit}
+                    >
+                      Checkout <i className="fa fa-angle-right" />
+                    </button>
                 </Link>
               </td>
             </tr>
@@ -101,7 +100,7 @@ const mapState = state => {
   return {
     cart: state.cart.cart,
     isFetching: state.cart.isFetching,
-    isLoggedIn: !!state.user.id,
+    isLoggedIn: !!state.user.id
   };
 };
 

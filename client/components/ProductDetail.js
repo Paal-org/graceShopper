@@ -58,7 +58,7 @@ const ProductDetail = props => {
             </div>
           </div>
           <div id="add-to-cart">
-            <div>Price: {selectedProduct.price}</div>
+            <div>Price: $ {selectedProduct.price}</div>
             <br />
             <div>
               <h3>In stock: {selectedProduct.inventoryQuantity}</h3>
