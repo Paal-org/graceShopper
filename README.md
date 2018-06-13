@@ -15,8 +15,18 @@ Credit for icons:
 
 <div>Icons made by <a href="https://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 
-homepage images by:
+Website images by:
 Joshua Budich
+The Simpsons
+Futurama
+Rugrats
+Scooby Doo
+Drew Carey Show
+Spongebob
+Star Wars
+You Don't Mess with the Zohan
+Willie Wonka and the Chocolate Factory
+King of the Hill
 
  <div> Emoji Cursor.js
   - 90's cursors collection
