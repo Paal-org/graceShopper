@@ -1,4 +1,7 @@
-README.md for GraceShopper
+Provisions, Alcohol and Libations
+[![Build Status](https://travis-ci.org/Paal-org/graceShopper.svg?branch=master)](https://travis-ci.org/Paal-org/graceShopper)
+
+Link to deployment: <a href="http://paal-org.herokuapp.com">http://paal-org.herokuapp.com</a>
 
 Credit for icons:
 
