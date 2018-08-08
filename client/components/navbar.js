@@ -1,15 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { logout } from "../store";
-import { clearCart, fetchCart } from "../store/reducers/cartReducer";
-import { clearAccount } from "../store/reducers/accountReducer";
-import Konami from "konami";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logout } from '../store';
+import { clearCart, fetchCart } from '../store/reducers/cartReducer';
+import { clearAccount } from '../store/reducers/accountReducer';
+import Konami from 'konami';
 
 let easter_egg = new Konami(function() {
   (function emojiCursor() {
-    var possibleEmoji = ["😈", "💩", "🦄", "🐉"];
+    var possibleEmoji = ['😈', '💩', '🦄', '🐉'];
     var width = window.innerWidth;
     var height = window.innerHeight;
     var cursor = { x: width / 2, y: width / 2 };
@@ -22,11 +22,11 @@ let easter_egg = new Konami(function() {
 
     // Bind events that are needed
     function bindEvents() {
-      document.addEventListener("mousemove", onMouseMove);
-      document.addEventListener("touchmove", onTouchMove);
-      document.addEventListener("touchstart", onTouchMove);
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('touchmove', onTouchMove);
+      document.addEventListener('touchstart', onTouchMove);
 
-      window.addEventListener("resize", onWindowResize);
+      window.addEventListener('resize', onWindowResize);
     }
 
     function onWindowResize(e) {
@@ -90,24 +90,24 @@ let easter_egg = new Konami(function() {
     function Particle() {
       this.lifeSpan = 120; //ms
       this.initialStyles = {
-        position: "absolute",
-        display: "block",
-        pointerEvents: "none",
-        "z-index": "10000000",
-        fontSize: "16px",
-        "will-change": "transform"
+        position: 'absolute',
+        display: 'block',
+        pointerEvents: 'none',
+        'z-index': '10000000',
+        fontSize: '16px',
+        'will-change': 'transform',
       };
 
       // Init, and set properties
       this.init = function(x, y, character) {
         this.velocity = {
           x: (Math.random() < 0.5 ? -1 : 1) * (Math.random() / 2),
-          y: 1
+          y: 1,
         };
 
         this.position = { x: x - 10, y: y - 20 };
 
-        this.element = document.createElement("span");
+        this.element = document.createElement('span');
         this.element.innerHTML = character;
         applyProperties(this.element, this.initialStyles);
         this.update();
@@ -121,13 +121,13 @@ let easter_egg = new Konami(function() {
         this.lifeSpan--;
 
         this.element.style.transform =
-          "translate3d(" +
+          'translate3d(' +
           this.position.x +
-          "px," +
+          'px,' +
           this.position.y +
-          "px,0) scale(" +
+          'px,0) scale(' +
           this.lifeSpan / 120 +
-          ")";
+          ')';
       };
 
       this.die = function() {
@@ -159,8 +159,8 @@ export const Navbar = props => {
       .reduce((total, num) => total + num, 0);
 
   return (
-    <div>
-      <div>
+    <div className="navBar">
+      <div className="container">
         <div className="row">
           <Link to="/home" className="col-8">
             <div className="row">
@@ -171,15 +171,15 @@ export const Navbar = props => {
           {/* ----------------------LOGIN-SIGNUP-LOGOUT----------------------- */}
           <div>
             {isLoggedIn ? (
-              <div>
+              <div className="login-Location">
                 {/* The navbar will show these links after you log in */}
-                <button type="button" className="btn navbar-light bg-light">
+                <button type="button" className="btn navbar-btn">
                   <Link to="/account" className="col-2">
                     <img className="nav-icon" src="/img/godzilla.png" />
                     <span id="welcome">Welcome {firstName}</span>
                   </Link>
                 </button>
-                <button type="button" className="btn navbar-light bg-light">
+                <button type="button" className="btn navbar-btn">
                   <a href="#" onClick={handleClick} className="col-2">
                     <img className="nav-icon" src="/img/exit.png" />
                     Logout
@@ -187,14 +187,14 @@ export const Navbar = props => {
                 </button>
               </div>
             ) : (
-              <div>
+              <div className="login-Location">
                 {/* The navbar will show these links before you log in */}
-                <button type="button" className="btn navbar-light bg-light">
+                <button type="button" className="btn navbar-btn">
                   <Link to="/signup" className="col-2">
                     <img className="nav-icon" src="/img/edit.png" />Sign Up
                   </Link>
                 </button>
-                <button type="button" className="btn navbar-light bg-light">
+                <button type="button" className="btn navbar-btn">
                   <Link to="/login" className="col-2">
                     <img className="nav-icon" src="/img/enter.png" />Login
                   </Link>
@@ -203,17 +203,17 @@ export const Navbar = props => {
             )}
           </div>
         </div>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light row">
+        <nav className="navbar navbar-expand-lg navbar-btn row">
           <div className="col-10">
             {/* ------------------------HOME----------------------- */}
-            <button type="button" className="btn navbar-light bg-light">
+            <button type="button" className="btn navbar-btn">
               <Link to="/home">
                 <img className="nav-icon" src="/img/house.png" /> Home
               </Link>
             </button>
             {/* ------------------------PRODUCTS----------------------- */}
             <div className="btn-group ">
-              <button type="button" className="btn navbar-light bg-light">
+              <button type="button" className="btn navbar-btn">
                 <Link to="/products">
                   <img className="nav-icon" src="/img/list.png" />
                   Products
@@ -221,7 +221,7 @@ export const Navbar = props => {
               </button>
               <button
                 type="button"
-                className="btn dropdown-toggle dropdown-toggle-split navbar-light bg-light"
+                className="btn dropdown-toggle dropdown-toggle-split navbar-btn"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
@@ -234,7 +234,7 @@ export const Navbar = props => {
                     return (
                       <div key={category.id} className="dropdown-item">
                         <img className="nav-icon" src={category.imageUrl} />
-                        <a href={"/products/" + category.name}>
+                        <a href={'/products/' + category.name}>
                           {category.name}
                         </a>
                       </div>
@@ -243,7 +243,7 @@ export const Navbar = props => {
               </div>
             </div>
             {/* ------------------------SEARCH----------------------- */}
-            <button type="button" className="btn navbar-light bg-light">
+            <button type="button" className="btn navbar-btn">
               <Link to="/products/search">
                 <img className="nav-icon" src="/img/search.png" />Search
               </Link>
@@ -251,7 +251,7 @@ export const Navbar = props => {
           </div>
           {/* ------------------------CART----------------------- */}
           <div className="col-2">
-            <button type="button" className="btn navbar-light bg-light">
+            <button type="button" className="btn navbar-btn">
               <Link to="/account/cart">
                 {totalCartItem ? (
                   <img className="nav-icon" src="/img/shopping-basket.png" />
@@ -260,7 +260,7 @@ export const Navbar = props => {
                     className="nav-icon"
                     src="/img/shopping-basket-empty.png"
                   />
-                )}{" "}
+                )}{' '}
                 {totalCartItem} Cart
               </Link>
             </button>
@@ -280,7 +280,7 @@ const mapState = state => {
     categories: state.categories,
     firstName: state.user.firstName,
     cart: state.cart.cart,
-    isFetching: state.cart.isFetching
+    isFetching: state.cart.isFetching,
   };
 };
 
@@ -290,7 +290,7 @@ const mapDispatch = dispatch => {
       dispatch(logout());
       dispatch(clearCart());
       dispatch(clearAccount());
-    }
+    },
   };
 };
 
@@ -304,5 +304,5 @@ export default connect(
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
 };
