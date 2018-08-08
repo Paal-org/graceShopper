@@ -10,7 +10,7 @@ import App from "./app";
 import "./socket";
 
 ReactDOM.render(
-  <div className="container">
+  <div>
     <Provider store={store}>
       <Router history={history}>
         <App />

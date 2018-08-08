@@ -1,6 +1,7 @@
 body {
   font-family: "Annie Use Your Telescope";
   font-size: 22px;
+  background: #f8f9fa
 }
 
 a {
@@ -24,9 +25,34 @@ form div {
 .logo {
   height: 60px;
 }
+.login-Location{
+  position: relative;
+  right: 0px
+}
+.navBar {
+  background: #CAD3C8
+}
+.navbar-btn {
+  background: #CAD3C8;
+  color: white;
+  height: 70px
+}
+
+.navbar-btn:hover {
+  background: rgb(169, 177, 167);
+}
 
 .nav-icon {
   height: 35px;
+}
+
+.footer {
+  display: flex;
+  padding: 20px;
+  justify-content: space-evenly;
+  background: #CAD3C8;
+  color: white
+
 }
 
 .icon {
